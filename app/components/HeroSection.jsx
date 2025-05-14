@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import {useRef, useEffect} from 'react';
+import { motion, useMotionValue, useSpring, useTransform, animate } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
 
 // Arrays de marcas para las órbitas
 const brandsOuter = [
@@ -20,16 +20,38 @@ const brandsInner = [
 ];
 
 export default function HeroSection() {
-  const radiusOuter = 250; // Radio órbita exterior
-  const radiusInner = 150; // Radio órbita interior
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 100, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 100, damping: 20 });
   
-  const glowX = useTransform(smoothX, (x) => x - 80 );
+  const glowX = useTransform(smoothX, (x) => x - 80);
   const glowY = useTransform(smoothY, (y) => y - 80);
+
+  // Responsive orbit radii
+  const getRadii = () => {
+    if (isMobile) {
+      return { outer: 120, inner: 70 };
+    } else {
+      return { outer: 250, inner: 150 };
+    }
+  };
+
+  const { outer: radiusOuter, inner: radiusInner } = getRadii();
+
+  // Check for mobile on mount and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const rect = containerRef.current?.getBoundingClientRect();
@@ -47,105 +69,110 @@ export default function HeroSection() {
     mouseY.set(e.clientY - rect.top);
   };
 
-  const handleMouseLeave = () => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      animate(mouseX, centerX, { duration: 0.5 });
-      animate(mouseY, centerY, { duration: 0.5 });
-    }
+  // Calculate orbit sizes based on viewport
+  const getOrbitSize = (size) => {
+    return isMobile ? size / 1.8 : size;
   };
 
   return (
-
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-8 antialiased pt-10 bg-[url('/fondoColmena1.png')]">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 antialiased pt-16 md:pt-24 bg-[url('/fondoColmena1.png')]">
       {/* CONTENIDO PRINCIPAL */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-7xl gap-30">
+      <div className="relative z-10 flex flex-col items-center justify-between w-full max-w-7xl lg:flex-row lg:gap-16 xl:gap-24">
 
-        <div className="flex flex-col items-start text-left w-full md:w-1/2 space-y-6 ">
-                    {/* ABEJA ASOMÁNDOSE */}
-        <div className="absolute -top-90 -left-10 z-10">
-          <Image
-            src="/abeja.png"
-            alt="Geekshive Bee"
-            width={400}
-            height={400}
-            className="select-none"
-            style={{
-              transform: 'translateY(40%)',
-            }}
-          />
-        </div>
-        <div
-            ref={containerRef}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className="relative inline-block"
-          >
-            <motion.div
-              className="absolute w-40 h-40 rounded-full bg-yellow-300 opacity-50 pointer-events-none blur-3xl z-0"
-              style={{
-                x: smoothX,
-                y: smoothY,
-                translateX: '-50%',
-                translateY: '-50%',
-              }}
-            />
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col items-center mt-10 lg:items-start text-center lg:text-left w-full lg:w-1/2 space-y-6 mb-20 lg:mb-0 lg:mt-0">
+          {/* ABEJA ASOMÁNDOSE - Responsive positioning */}
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-none ">
+            <div className="absolute -top-15 sm:-top-32 sm:mt-12 left-1/2 lg:-top-75 lg:-left-10 transform -translate-x-1/2 lg:translate-x-0 z-10">
+              <Image
+                src="/abeja.png"
+                alt="Geekshive Bee"
+                width={isMobile ? 250 : 400}
+                height={isMobile ? 250 : 400}
+                className="select-none"
+                style={{
+                  transform: 'translateY(20%)',
+                }}
+              />
+            </div>
+            
+            <div
+              ref={containerRef}
+              onMouseMove={handleMouseMove}
+              className="relative inline-block mt-28 sm:mt-32 lg:mt-36"
+            >
+              <motion.div
+                className="absolute w-20 md:w-40 h-20 md:h-40 rounded-full bg-yellow-300 opacity-50 pointer-events-none blur-3xl z-0"
+                style={{
+                  x: smoothX,
+                  y: smoothY,
+                  translateX: '-50%',
+                  translateY: '-50%',
+                }}
+              />
 
-          <h1
-            className="relative z-20 text-black text-4xl md:text-5xl font-raleway font-bold bg-white rounded-full p-12 inline-block shadow-md border-[#F2D300] border-5"
-            style={{
-              boxShadow: '0 0 80px #F2D300',
-            }}
-          >
-            Geekshive: Your online geek store.
-          </h1>
+              <h1
+                className="relative z-20 text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-raleway font-bold bg-white rounded-full p-6 md:p-8 lg:p-12 inline-block shadow-md border-[#F2D300] border-4"
+                style={{
+                  boxShadow: '0 0 80px #F2D300',
+                }}
+              >
+                Geeks
+                {/* <p className='inline-block text-[#F2D300]'> */}
+                  hive
+                  {/* </p> */}
+                  : Your online geek store.
+              </h1>
+            </div>
           </div>
         </div>
 
-        
-
-
-        {/* DERECHA: ÓRBITAS Y MARCAS */}
-        <div className="relative w-full md:w-1/2 h-[500px] flex items-center justify-center mt-12 md:mt-0">
+        {/* RIGHT: ÓRBITAS Y MARCAS - Aligned with title */}
+        <div className="relative w-full lg:w-1/2 h-[300px] sm:h-[400px] md:h-[500px] flex items-center justify-center">
           
-          {/* CÍRCULOS VISIBLES (sólo líneas) */}
+          {/* CÍRCULOS VISIBLES (sólo líneas) - Responsive sizes */}
           {/* Órbita extra exterior */}
-          <div className="absolute w-[600px] h-[600px] rounded-full border-2 border-transparent opacity-40" style={{
+          <div className={`absolute w-[${getOrbitSize(600)}px] h-[${getOrbitSize(600)}px] rounded-full border-2 border-transparent opacity-40`} style={{
             maskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0) 45deg, rgba(0,0,0,1) 90deg, rgba(0,0,0,0) 135deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0) 225deg, rgba(0,0,0,1) 270deg, rgba(0,0,0,0) 315deg, rgba(0,0,0,1) 360deg)",
             WebkitMaskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0) 45deg, rgba(0,0,0,1) 90deg, rgba(0,0,0,0) 135deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0) 225deg, rgba(0,0,0,1) 270deg, rgba(0,0,0,0) 315deg, rgba(0,0,0,1) 360deg)",
             borderColor: "rgba(255,255,255,1)",
+            width: getOrbitSize(600),
+            height: getOrbitSize(600),
           }} />
 
           {/* Órbita exterior con marcas */}
-          {/* Círculo visible */}
-          <div className="absolute w-[500px] h-[500px] rounded-full border-2 border-transparent opacity-40" style={{
+          <div className="absolute rounded-full border-2 border-transparent opacity-40" style={{
             maskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0.2) 90deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0.2) 270deg, rgba(0,0,0,1) 360deg)",
             WebkitMaskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0.2) 90deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0.2) 270deg, rgba(0,0,0,1) 360deg)",
             borderColor: "rgba(255,255,255,1)",
+            width: getOrbitSize(500),
+            height: getOrbitSize(500),
           }} />
 
           {/* Órbita intermedia extra */}
-          <div className="absolute w-[400px] h-[400px] rounded-full border-2 border-transparent opacity-40" style={{
+          <div className="absolute rounded-full border-2 border-transparent opacity-40" style={{
             maskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0) 45deg, rgba(0,0,0,1) 90deg, rgba(0,0,0,0) 135deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0) 225deg, rgba(0,0,0,1) 270deg, rgba(0,0,0,0) 315deg, rgba(0,0,0,1) 360deg)",
             WebkitMaskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0) 45deg, rgba(0,0,0,1) 90deg, rgba(0,0,0,0) 135deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0) 225deg, rgba(0,0,0,1) 270deg, rgba(0,0,0,0) 315deg, rgba(0,0,0,1) 360deg)",
             borderColor: "rgba(255,255,255,1)",
+            width: getOrbitSize(400),
+            height: getOrbitSize(400),
           }} />
 
           {/* Órbita interior con marcas */}
-          <div className="absolute w-[300px] h-[300px] rounded-full border-2 border-transparent opacity-40" style={{
+          <div className="absolute rounded-full border-2 border-transparent opacity-40" style={{
             maskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0.2) 90deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0.2) 270deg, rgba(0,0,0,1) 360deg)",
             WebkitMaskImage: "conic-gradient(rgba(0,0,0,1) 0deg, rgba(0,0,0,0.2) 90deg, rgba(0,0,0,1) 180deg, rgba(0,0,0,0.2) 270deg, rgba(0,0,0,1) 360deg)",
             borderColor: "rgba(255,255,255,1)",
+            width: getOrbitSize(300),
+            height: getOrbitSize(300),
           }} />
 
           {/* NÚMERO Y TEXTO EN EL CENTRO */}
           <div className="absolute flex flex-col items-center justify-center text-center antialiased">
-            <div className="text-white text-6xl md:text-8xl font-semibold font-raleway">
+            <div className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold font-raleway">
               50+
             </div>
-            <div className="text-white text-xl md:text-2xl font-normal font-raleway mt-2">
+            <div className="text-white text-lg sm:text-xl md:text-2xl font-normal font-raleway mt-2">
               brands
             </div>
           </div>
@@ -174,8 +201,13 @@ export default function HeroSection() {
                   transition={{ repeat: Infinity, duration: 80, ease: "linear" }}
                   className="absolute"
                 >
-
-                  <Image src={brand.src} alt={brand.alt} width={50} height={50} className='rounded-full' />
+                  <Image 
+                    src={brand.src} 
+                    alt={brand.alt} 
+                    width={isMobile ? 30 : 50} 
+                    height={isMobile ? 30 : 50} 
+                    className='rounded-full' 
+                  />
                 </motion.div>
               );
             })}
@@ -205,7 +237,12 @@ export default function HeroSection() {
                   transition={{ repeat: Infinity, duration: 70, ease: "linear" }}
                   className="absolute"
                 >
-                  <Image src={brand.src} alt={brand.alt} width={40} height={40} />
+                  <Image 
+                    src={brand.src} 
+                    alt={brand.alt} 
+                    width={isMobile ? 25 : 40} 
+                    height={isMobile ? 25 : 40} 
+                  />
                 </motion.div>
               );
             })}

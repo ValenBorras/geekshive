@@ -13,18 +13,22 @@ export default function Navbar() {
             alt="Geekshive Logo"
             width={30}
             height={30}
-            className="object-contain"
+            className="object-contain hover:drop-shadow-[0_0_6px_#F2D300] transition"
           />
         </a>
       </div>
 
       {/* Navigation Tabs */}
-      <div className="flex space-x-6 text-[#F2D300] font-raleway font-semibold text-sm md:text-base">
-        <a href="#hero" className="hover:underline transition">Home</a>
-        <a href="#marketplaces" className="hover:underline transition">Marketplaces</a>
-        <a href="#brands" className="hover:underline transition">Brands</a>
-        <a href="#about" className="hover:underline transition">About</a>
-        <a href="#contact" className="hover:underline transition">Contact</a>
+      <div className="flex space-x-6 text-[#F2D300] font-raleway font-semibold text-sm md:text-base ">
+        {['Home', 'Marketplaces', 'Brands', 'About', 'Contact'].map((text, i) => (
+          <a
+            key={text}
+            href={`#${text.toLowerCase()}`}
+            className="transition hover:drop-shadow-[0_0_6px_#F2D300] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all hover:after:w-full "
+          >
+            {text}
+          </a>
+        ))}
       </div>
     </nav>
   );

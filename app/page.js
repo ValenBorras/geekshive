@@ -7,10 +7,10 @@ import AboutUs from "./components/AboutUs";
 
 export default function Home() {
   return (
-    <div>      
+    <div className=" bg-[url('/fondoColmena1.png')]  ">      
       <Navbar/>
       <HeroSection/>
-     <Marketplaces/>
+      <Marketplaces/>
       <Brands/>
       <AboutUs/>
       <Footer/>

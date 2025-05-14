@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
-    require('@codaworks/react-glow/tailwind')
+    require('@codaworks/react-glow/tailwind'),
+    require('tailwindcss-textshadow')
   ],
     theme: {
       extend: {
@@ -18,6 +19,9 @@ module.exports = {
               borderWidth: '3px',
             },
           },
+        },
+        textShadow: {
+          glow: '0 0 10px #F2D300, 0 0 20px #F2D300',
         },
       },
     },
