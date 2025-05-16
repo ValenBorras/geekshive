@@ -20,6 +20,10 @@ module.exports = {
             },
           },
         },
+        fontFamily: {
+          sans: ['Raleway', 'sans-serif'],
+          raleway: ['Raleway', 'sans-serif'],
+        },
         textShadow: {
           glow: '0 0 10px #F2D300, 0 0 20px #F2D300',
         },
