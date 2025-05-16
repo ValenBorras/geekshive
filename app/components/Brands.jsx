@@ -3,64 +3,57 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-
-const brands = [
-  { logo: '/placeholder.png', alt: 'Brand 1', link: 'https://amazon.com/brand1' },
-  { logo: '/placeholder.png', alt: 'Brand 2', link: 'https://amazon.com/brand2' },
-  { logo: '/placeholder.png', alt: 'Brand 3', link: 'https://mercadolibre.com/brand3' },
-  { logo: '/placeholder.png', alt: 'Brand 4', link: 'https://amazon.com/brand4' },
-  { logo: '/placeholder.png', alt: 'Brand 5', link: 'https://mercadolibre.com/brand5' },
-  { logo: '/placeholder.png', alt: 'Brand 6', link: 'https://amazon.com/brand6' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-  { logo: '/placeholder.png', alt: 'Brand 7', link: 'https://amazon.com/brand7' },
-
-];
+import brands from '@/data/brands.json';
+import Image from 'next/image';
 
 const Brands = () => {
   const handleDragStart = (e) => e.preventDefault();
 
   const items = brands.map((brand, index) => (
-    <div key={index} className="md:px-5"> {/* Add spacing here */}
+    <div 
+      key={index} 
+      className="flex items-center justify-center h-36" // Fixed height container for consistent alignment
+    >
       <a
         href={brand.link}
         target="_blank"
         rel="noopener noreferrer"
         onDragStart={handleDragStart}
+        className="flex items-center justify-center h-full" // Full height of parent
       >
-        <img
-          src={brand.logo}
-          alt={brand.alt}
-          className="w-32 sm:w-40 md:w-48 h-auto grayscale hover:scale-125 transition-transform duration-300"
-        />
+        <div className="flex items-center justify-center h-full"> {/* Extra wrapper for centering */}
+          <Image
+            src={brand.url}
+            alt={brand.name}
+            width={100}
+            height={50}
+            className="w-32 sm:w-40 md:w-48 grayscale hover:scale-125 hover:grayscale-0 transition-transform duration-300 object-contain max-h-[80%]" // Limit height to 80% of container
+          />
+        </div>
       </a>
     </div>
   ));
 
   return (
-    <section className="relative z-10 mt-24 w-full bg-white/10 text-black py-28 px-6 md:px-20 font-raleway border-white/12 border-y-1">
-      <div className="w-full mx-auto space-y-16">
+    <section className="relative z-10 mt-24 w-full bg-white/10 border-white/12 border-1 text-black py-15 overflow-hidden">
+      <div className="w-full">
         <AliceCarousel
-          mouseTracking
-          autoPlayStrategy='none'
           items={items}
+          mouseTracking
           autoPlay
+          autoPlayStrategy="none"
           infinite
           autoPlayInterval={0}
-          animationDuration={6000}
-          animationEasingFunction="linear"
+          animationDuration={5000}
+          animationEasingFunction='linear'
           disableButtonsControls
           disableDotsControls
           responsive={{
             0: { items: 2 },
-            768: { items: 5 },
-            1024: { items: 7 },
+            768: { items: 4 },
+            1024: { items: 6 }
           }}
+          ssrSilentMode={false}
         />
       </div>
     </section>
