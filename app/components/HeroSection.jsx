@@ -6,16 +6,16 @@ import { useRef, useEffect, useState } from "react"
 
 const brandsOuter = [
   { src: "/brand1.jpg", alt: "Brand 1" },
-  { src: "/brands/alliance logo copy.jpg", alt: "Brand 2" },
-  { src: "/brands/doss.jpg", alt: "Brand 3" },
-  { src: "/brands/gamelyn.jpg", alt: "Brand 4" },
-  { src: "/brands/gw.jpg", alt: "Brand 5" },
+  { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
+  { src: "/Brands/Doss.jpg", alt: "Brand 3" },
+  { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
+  { src: "/Brands/GW.jpg", alt: "Brand 5" },
 ]
 
 const brandsInner = [
-  { src: "/brands/Douglas company.jpg", alt: "Brand 6" },
-  { src: "/brands/trifox.jpg", alt: "Brand 7" },
-  { src: "/brands/B&F.jpg", alt: "Brand 8" },
+  { src: "/Brands/Douglas company.jpg", alt: "Brand 6" },
+  { src: "/Brands/trifox.jpg", alt: "Brand 7" },
+  { src: "/Brands/B&F.jpg", alt: "Brand 8" },
 ]
 
 export default function HeroSection() {
