@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Brands from "./components/Brands";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
+import Boosting from "./components/Boosting";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Marketplaces/>
       <Brands/>
       <AboutUs/>
+      <Boosting/>
       <Contact/>
       <Footer/>
     </div>

@@ -15,10 +15,11 @@ const Footer = () => {
     <div>
       <h3 className="text-[#F4CB00] font-semibold mb-2">Menu</h3>
       <ul className="space-y-1">
-        <li><a href="/about" className="hover:text-[#F2D300]">About us</a></li>
-        <li><a href="/marketplaces" className="hover:text-[#F2D300]">Marketplaces</a></li>
-        <li><a href="/brands" className="hover:text-[#F2D300]">brands</a></li>
-        <li><a href="/contact" className="hover:text-[#F2D300]">Contact</a></li>
+        <li><a href="#about" className="hover:text-[#F2D300]">About us</a></li>
+        <li><a href="#marketplaces" className="hover:text-[#F2D300]">Marketplaces</a></li>
+        <li><a href="#brands" className="hover:text-[#F2D300]">Brands</a></li>
+        <li><a href="#boosting" className="hover:text-[#F2D300]">Boosting</a></li>
+        <li><a href="#contact" className="hover:text-[#F2D300]">Contact</a></li>
       </ul>
     </div>
 

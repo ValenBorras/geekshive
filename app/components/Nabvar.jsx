@@ -26,7 +26,7 @@ export default function Navbar() {
     }
   };
 
-  const navItems = ['Home', 'Marketplaces', 'Brands', 'About', 'Contact'];
+  const navItems = ['Home', 'Marketplaces', 'Brands', 'About', 'Boosting', 'Contact'];
 
   return (
     <nav className={'w-full fixed top-0 left-0 z-50 transition-all duration-300 bg-black/80 backdrop-blur-md '}>

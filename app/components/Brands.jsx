@@ -34,7 +34,7 @@ const Brands = () => {
             alt={brand.name}
             width={100}
             height={50}
-            className="w-32 sm:w-40 md:w-48 grayscale hover:scale-125 hover:grayscale-0 transition-transform duration-300 object-contain max-h-[80%]" // Limit height to 80% of container
+            className="w-32 sm:w-40 md:w-48 hover:scale-125 transition-transform duration-300 object-contain max-h-[80%]" // Limit height to 80% of container
           />
         </div>
       </a>
