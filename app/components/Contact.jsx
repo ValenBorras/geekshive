@@ -50,7 +50,7 @@ export default function Contact() {
   return (
     <section id="contact" className="w-full pt-16 pb-28 px-6 md:px-24 font-raleway relative overflow-hidden">
       {/* Background gradient - centered in the section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F2D300]/5 via-[#F2D300]/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F2D300]/5 to-transparent" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Title and Description */}

@@ -9,7 +9,7 @@ import { useRef, useEffect, useState } from "react"
 const brandsOuter = [
   { src: "/Brands/Zagone-Studios.png", alt: "Brand 1" },
   { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
-  { src: "/Brands/doss2.jpg", alt: "Brand 3" },
+  { src: "/Brands/doss2.jpeg", alt: "Brand 3" },
   { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
   { src: "/Brands/GW.jpg", alt: "Brand 5" },
 ]
