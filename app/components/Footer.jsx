@@ -1,5 +1,6 @@
 import React from 'react'
-import { FaInstagram, FaTwitter, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaXTwitter } from 'react-icons/fa6'
 
 const Footer = () => {
   return (
@@ -35,7 +36,7 @@ const Footer = () => {
                   <FaInstagram/>
                    </a>
                    <a href="https://instagram.com/geekshive" target="_blank" className="hover:text-[#F2D300]">
-                  <FaTwitter/>
+                  <FaXTwitter/>
                    </a>
                    <a href="https://instagram.com/geekshive" target="_blank" className="hover:text-[#F2D300]">
                   <FaFacebook/>
@@ -47,8 +48,20 @@ const Footer = () => {
     </div>
   </div>
 
-  <div className="flex flex-row items-center justify-center mt-10 text-center text-xs text-gray-400">
-    © 2025 Geekshive Inc. All rights reserved. | Powered by ValenBorras <a href="https://x.com/ValenBorras_" className='mx-1'> <FaTwitter/></a>
+  <div className="flex flex-wrap items-center justify-center gap-x-2 mt-10 text-center text-xs text-gray-400">
+    <span>© 2025 Geekshive Inc. All rights reserved.</span>
+    <span className="hidden sm:inline">|</span>
+    <div className="flex items-center">
+      <span>Powered by ValenBorras</span>
+      <a 
+        href="https://x.com/ValenBorras_" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center hover:text-[#F2D300] transition-colors ml-1"
+      >
+        <FaXTwitter size={14} />
+      </a>
+    </div>
   </div>
 </footer>
   )

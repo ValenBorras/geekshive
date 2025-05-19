@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@codaworks/react-glow": "^1.0.6",
-    "framer-motion": "^12.9.2",
+    "framer-motion": "^12.12.1",
     "icons": "^1.0.0",
     "keen-slider": "^6.8.6",
     "motion": "^12.9.2",

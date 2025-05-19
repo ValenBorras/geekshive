@@ -95,49 +95,50 @@ export default function Marketplaces() {
   }, []);
 
   return (
-
-      <div className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-16">
-          {marketplaces.map((item, i) => (
-
-              <motion.div
-              key = {i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={fadeInUp}
-                className="h-full"
+    <div id="marketplaces" className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-16">
+        {marketplaces.map((item, i) => (
+          <motion.div
+            key={i}
+            custom={i}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInUp}
+            className="h-full"
+          >
+            <div className="bg-white/10 rounded-3xl shadow-lg p-5 sm:p-6 md:p-8 h-full flex flex-col 
+            justify-start items-center space-y-4 sm:space-y-6 transition-all duration-300 hover:scale-105 
+             border border-[#F2D300]/20 hover:border-[#F2D300]/40 ">
+              <a 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="transform transition-transform duration-300 hover:scale-110"
               >
-                <div className="bg-white/10 border border-white/12 rounded-3xl shadow-lg p-5 sm:p-6 md:p-8 h-full flex flex-col justify-start items-center space-y-4 sm:space-y-6 transition-transform duration-300 hover:scale-105">
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="transform transition-transform duration-300 hover:scale-110"
-                  >
-                    {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        width={140}
-                        height={140}
-                        className="mx-auto mb-2"
-                      />
-                    ) : (
-                      item.icon && React.cloneElement(item.icon, { size: iconSize })
-                    )}
-                  </a>
-                  <h2 className="text-xl sm:text-2xl font-semibold text-white">{item.name}</h2>
-                  <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed text-center">
-                    {formatDescription(item.description)}
-                  </p>
-                </div>
-              </motion.div>
-
-          ))}
-        </div>
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={140}
+                    height={140}
+                    className="mx-auto mb-2"
+                  />
+                ) : (
+                  item.icon && React.cloneElement(item.icon, { 
+                    size: iconSize,
+                    className: "mx-auto text-white" 
+                  })
+                )}
+              </a>
+              <h2 className="text-xl sm:text-2xl font-semibold text-[#F2D300]">{item.name}</h2>
+              <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed text-center">
+                {formatDescription(item.description)}
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
-
+    </div>
   );
 }

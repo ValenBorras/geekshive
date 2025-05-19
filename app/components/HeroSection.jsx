@@ -1,27 +1,36 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
+// Assuming your images are in public/brands/ folder
+// Update these paths to match your actual folder structure
 const brandsOuter = [
-  { src: "/brand1.jpg", alt: "Brand 1" },
-  { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
-  { src: "/Brands/Doss.jpg", alt: "Brand 3" },
-  { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
-  { src: "/Brands/GW.jpg", alt: "Brand 5" },
+  { src: "/brands/Zagone-Studios.png", alt: "Brand 1" },
+  { src: "/brands/alliance logo copy.jpg", alt: "Brand 2" },
+  { src: "/brands/doss2.jpeg", alt: "Brand 3" },
+  { src: "/brands/gamelyn.jpg", alt: "Brand 4" },
+  { src: "/brands/gw.jpg", alt: "Brand 5" },
 ]
 
 const brandsInner = [
-  { src: "/Brands/Douglas company.jpg", alt: "Brand 6" },
-  { src: "/Brands/trifox.jpg", alt: "Brand 7" },
-  { src: "/Brands/B&F.jpg", alt: "Brand 8" },
+  { src: "/brands/Douglas company.jpg", alt: "Brand 6" },
+  { src: "/brands/adbisA.png", alt: "Brand 7" },
+  { src: "/brands/B&F.jpg", alt: "Brand 8" },
 ]
 
 export default function HeroSection() {
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [imageErrors, setImageErrors] = useState({})
   const containerRef = useRef(null)
+
+  // Mouse tracking for glow effect
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const smoothX = useSpring(mouseX, { stiffness: 100, damping: 20 })
+  const smoothY = useSpring(mouseY, { stiffness: 100, damping: 20 })
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -31,8 +40,40 @@ export default function HeroSection() {
     // Set mounted state after initial render
     setIsMounted(true)
 
+    // Initialize mouse position to center of container
+    const initializeMousePosition = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+        mouseX.set(centerX)
+        mouseY.set(centerY)
+      }
+    }
+
+    // Initialize after a short delay to ensure container is rendered
+    setTimeout(initializeMousePosition, 100)
+
     return () => window.removeEventListener("resize", checkMobile)
-  }, [])
+  }, [mouseX, mouseY])
+
+  // Handle mouse movement for glow effect
+  const handleMouseMove = (e) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect()
+      mouseX.set(e.clientX - rect.left)
+      mouseY.set(e.clientY - rect.top)
+    }
+  }
+
+  // Handle image error
+  const handleImageError = (id) => {
+    console.log(`Image failed to load: ${id}`)
+    setImageErrors((prev) => ({
+      ...prev,
+      [id]: true,
+    }))
+  }
 
   // Calculate sizes based on screen width
   const outerRadius = isMobile ? 120 : 250
@@ -41,7 +82,7 @@ export default function HeroSection() {
   const innerLogoSize = isMobile ? 25 : 40
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 antialiased pt-16 md:pt-24 bg-[url('/fondoColmena1.png')]">
+    <div id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 md:px-8 antialiased pt-16 md:pt-24 bg-[url('/fondoColmena1.png')]">
       <div className="relative z-10 flex flex-col items-center justify-between w-full max-w-7xl lg:flex-row lg:gap-16 xl:gap-24">
         {/* LEFT */}
         <div className="flex flex-col items-center mt-10 lg:items-start text-center lg:text-left w-full lg:w-1/2 space-y-6 mb-20 lg:mb-0 lg:mt-0">
@@ -54,25 +95,24 @@ export default function HeroSection() {
                 height={isMobile ? 250 : 400}
                 className="select-none"
                 style={{ transform: "translateY(20%)" }}
+                onError={() => console.log("Bee image failed to load")}
+                unoptimized={true}
+                priority={true}
               />
             </div>
 
-            <div ref={containerRef} className="relative inline-block mt-28 sm:mt-32 lg:mt-36">
+            <div
+              ref={containerRef}
+              className="relative inline-block mt-28 sm:mt-32 lg:mt-36"
+              onMouseMove={handleMouseMove}
+            >
               <motion.div
                 className="absolute w-20 md:w-40 h-20 md:h-40 rounded-full bg-yellow-300 opacity-50 pointer-events-none blur-3xl z-0"
-                animate={{
-                  x: [0, 20, 0, -20, 0],
-                  y: [0, -20, 0, 20, 0],
-                }}
-                transition={{
-                  repeat: Number.POSITIVE_INFINITY,
-                  duration: 5,
-                  ease: "easeInOut",
-                }}
                 style={{
-                  left: "50%",
-                  top: "50%",
-                  transform: "translate(-50%, -50%)",
+                  x: smoothX,
+                  y: smoothY,
+                  translateX: "-50%",
+                  translateY: "-50%",
                 }}
               />
               <h1
@@ -133,10 +173,11 @@ export default function HeroSection() {
                   {brandsOuter.map((brand, index) => {
                     // Calculate position around the circle
                     const angle = (index / brandsOuter.length) * Math.PI * 2 // in radians
+                    const id = `outer-${index}`
 
                     return (
                       <motion.div
-                        key={`outer-${index}`}
+                        key={id}
                         className="absolute"
                         style={{
                           left: `${outerRadius + Math.cos(angle) * outerRadius}px`,
@@ -154,16 +195,25 @@ export default function HeroSection() {
                           ease: "linear",
                         }}
                       >
-                        <Image
-                          src={brand.src || "/placeholder.svg"}
-                          alt={brand.alt}
-                          width={outerLogoSize}
-                          height={outerLogoSize}
-                          className="rounded-full object-cover"
-                          onError={(e) => {
-                            e.target.src = "/placeholder.svg?height=50&width=50"
-                          }}
-                        />
+                        {/* Colored circle that's always visible */}
+                        <div
+                          className={`w-full h-full rounded-full ${imageErrors[id] ? "bg-yellow-300 flex items-center justify-center text-xs font-bold" : "bg-gray-200"}`}
+                        >
+                          {imageErrors[id] ? brand.alt.charAt(0) : null}
+                        </div>
+
+                        {/* Image on top of circle, if it loads successfully */}
+                        {!imageErrors[id] && (
+                          <Image
+                            src={brand.src || "/placeholder.svg"}
+                            alt={brand.alt}
+                            width={outerLogoSize}
+                            height={outerLogoSize}
+                            className="rounded-full object-cover absolute inset-0"
+                            onError={() => handleImageError(id)}
+                            unoptimized={true}
+                          />
+                        )}
                       </motion.div>
                     )
                   })}
@@ -183,10 +233,11 @@ export default function HeroSection() {
                   {brandsInner.map((brand, index) => {
                     // Calculate position around the circle
                     const angle = (index / brandsInner.length) * Math.PI * 2 // in radians
+                    const id = `inner-${index}`
 
                     return (
                       <motion.div
-                        key={`inner-${index}`}
+                        key={id}
                         className="absolute"
                         style={{
                           left: `${innerRadius + Math.cos(angle) * innerRadius}px`,
@@ -204,16 +255,25 @@ export default function HeroSection() {
                           ease: "linear",
                         }}
                       >
-                        <Image
-                          src={brand.src || "/placeholder.svg"}
-                          alt={brand.alt}
-                          width={innerLogoSize}
-                          height={innerLogoSize}
-                          className="rounded-full object-cover"
-                          onError={(e) => {
-                            e.target.src = "/placeholder.svg?height=40&width=40"
-                          }}
-                        />
+                        {/* Colored circle that's always visible */}
+                        <div
+                          className={`w-full h-full rounded-full ${imageErrors[id] ? "bg-yellow-300 flex items-center justify-center text-xs font-bold" : "bg-gray-200"}`}
+                        >
+                          {imageErrors[id] ? brand.alt.charAt(0) : null}
+                        </div>
+
+                        {/* Image on top of circle, if it loads successfully */}
+                        {!imageErrors[id] && (
+                          <Image
+                            src={brand.src || "/placeholder.svg"}
+                            alt={brand.alt}
+                            width={innerLogoSize}
+                            height={innerLogoSize}
+                            className="rounded-full object-cover absolute inset-0"
+                            onError={() => handleImageError(id)}
+                            unoptimized={true}
+                          />
+                        )}
                       </motion.div>
                     )
                   })}

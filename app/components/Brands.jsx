@@ -5,6 +5,13 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import brands from '@/data/brands.json';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+};
 
 const Brands = () => {
   const handleDragStart = (e) => e.preventDefault();
@@ -35,7 +42,26 @@ const Brands = () => {
   ));
 
   return (
-    <section className="relative z-10 mt-24 w-full bg-white/10 border-white/12 border-1 text-black py-15 overflow-hidden">
+    <section id="brands" className="relative z-10 mt-24 w-full bg-white/10 border-white/12 border-1 text-black py-15 overflow-hidden">
+      {/* Title and Description */}
+      <motion.div 
+        className="text-center space-y-6 mb-16 px-6"
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">
+          Our Brands
+        </h2>
+        <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
+          We partner with the most innovative and exciting brands in geek culture. 
+          From gaming to collectibles, our curated selection brings you the best products 
+          from industry leaders and emerging creators.
+        </p>
+      </motion.div>
+
+      {/* Original Carousel */}
       <div className="w-full">
         <AliceCarousel
           items={items}
