@@ -8,8 +8,8 @@ import { useRef, useEffect, useState } from "react"
 // Update these paths to match your actual folder structure
 const brandsOuter = [
   { src: "/Brands/Zagone-Studios.png", alt: "Brand 1" },
-  { src: "/Brands/alliance logo.jpg", alt: "Brand 2" },
-  { src: "/Brands/Doss.jpg", alt: "Brand 3" },
+  { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
+  { src: "/Brands/doss2.jpg", alt: "Brand 3" },
   { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
   { src: "/Brands/GW.jpg", alt: "Brand 5" },
 ]
