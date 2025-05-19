@@ -7,7 +7,7 @@ import { useRef, useEffect, useState } from "react"
 // Assuming your images are in public/brands/ folder
 // Update these paths to match your actual folder structure
 const brandsOuter = [
-  { src: "/Brands/Zagone-Studios.png", alt: "Brand 1" },
+  { src: "/Brands/witmer.jpg", alt: "Brand 1" },
   { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
   { src: "/Brands/doss2.jpeg", alt: "Brand 3" },
   { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
