@@ -106,7 +106,7 @@ export default function AboutUs() {
         >
           <div className="relative w-full max-w-4xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl border-2 border-[#F2D300]/20 hover:border-[#F2D300]/40 transition-all duration-300">
             <Image
-              src="/GroupGH.webp"
+              src="/GroupGH.JPEG"
               alt="The Geekshive Team"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"

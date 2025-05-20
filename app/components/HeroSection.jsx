@@ -119,7 +119,7 @@ export default function HeroSection() {
                 className="relative z-20 text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-raleway font-bold bg-white rounded-full p-6 md:p-8 lg:p-12 inline-block shadow-md border-[#F2D300] border-4"
                 style={{ boxShadow: "0 0 80px #F2D300" }}
               >
-                Geeks<span className="text-[#F2D300]">hive</span>: Your online geek store.
+                Geeks<span className="text-[#F2D300]">Hive</span>: Your online geek store.
               </h1>
             </div>
           </div>

@@ -39,9 +39,9 @@ const Footer = () => {
                    <a href="https://www.facebook.com/share/1DYoj1tG8x/?mibextid=wwXIfr" target="_blank" className="hover:text-[#F2D300]">
                   <FaFacebook/>
                    </a>
-                   <a href="https://instagram.com/geekshive" target="_blank" className="hover:text-[#F2D300]">
+                   {/* <a href="https://instagram.com/geekshive" target="_blank" className="hover:text-[#F2D300]">
                   <FaLinkedin/>
-                   </a>
+                   </a> */}
       </div>
     </div>
   </div>
