@@ -16,6 +16,11 @@ const nextConfig = {
         source: '/es/LaComunidad.html',
         destination: '/',
         permanent: true,
+      },
+      {
+        source: '/es/escalaPP.html', 
+        destination: '/',
+        permanent: true,
       }
     ];
   },
