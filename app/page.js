@@ -6,10 +6,12 @@ import Brands from "./components/Brands";
 import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import Boosting from "./components/Boosting";
+import { Analytics } from "@vercel/analytics/next"
 
 export default function Home() {
   return (
     <div className=" bg-[url('/fondoColmena1.png')]  ">      
+      <Analytics />
       <Navbar/>
       <HeroSection/>
       <Marketplaces/>
