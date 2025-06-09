@@ -26,6 +26,7 @@ const Footer = () => {
     <div>
       <h3 className="text-[#F4CB00] font-semibold mb-2">Contact</h3>
       <p>Email: <a href="mailto:fran@geekshive.com" className="hover:text-[#F2D300]">fran@geekshive.com</a></p>
+      <p>Phone: <a href="tel:+1 (888) 797-4335" className="hover:text-[#F2D300]">+1 (888) 797-4335</a></p>
       <p>Miami, Florida, USA</p>
     </div>
 
