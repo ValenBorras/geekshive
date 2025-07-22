@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaInstagram, FaFacebook, FaLinkedin, FaTiktok } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaLinkedin, FaTiktok, FaYoutube } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 
 const Footer = () => {
@@ -45,6 +45,9 @@ const Footer = () => {
                    </a>
                    <a href="https://www.tiktok.com/@geekshive" target="_blank" className="hover:text-[#F2D300]">
                   <FaTiktok/>
+                   </a>
+                   <a href="https://www.youtube.com/@geekshive" target="_blank" className="hover:text-[#F2D300]"> 
+                   <FaYoutube/>
                    </a>
       </div>
     </div>
