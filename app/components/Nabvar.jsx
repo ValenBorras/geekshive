@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useI18n } from '../i18n/I18nProvider';
+import LanguageToggle from './LanguageToggle';
 
 export default function Navbar() {
   const { t } = useI18n();
@@ -67,7 +68,11 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+        {/* Right side: Language toggle (desktop) + Mobile Menu Button */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block text-white/80">
+            <LanguageToggle />
+          </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-[#F2D300] focus:outline-none"
@@ -75,6 +80,7 @@ export default function Navbar() {
           >
             {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
+        </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -91,6 +97,9 @@ export default function Navbar() {
                 {item.label}
               </button>
             ))}
+            <div className="pt-2 text-white/80">
+              <LanguageToggle />
+            </div>
           </div>
         </div>
       </div>

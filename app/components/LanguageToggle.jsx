@@ -17,20 +17,21 @@ export default function LanguageToggle() {
 
   return (
     <div className="flex items-center gap-3 text-xs">
-      {SUPPORTED_LOCALES.map((lang) => (
-        <Link
-          key={lang}
-          href={`/${lang}${normalizedRest}`}
-          className={
-            currentLocale === lang
-              ? 'font-semibold underline underline-offset-4'
-              : 'opacity-70 hover:opacity-100'
-          }
-          prefetch
-        >
-          {lang.toUpperCase()}
-        </Link>
-      ))}
+      {SUPPORTED_LOCALES.map((lang) => {
+        const base = 'text-[#F2D300] transition hover:drop-shadow-[0_0_6px_#F2D300]'
+        const active = 'font-semibold underline underline-offset-4'
+        const inactive = 'opacity-80 hover:opacity-100'
+        return (
+          <Link
+            key={lang}
+            href={`/${lang}${normalizedRest}`}
+            className={`${base} ${currentLocale === lang ? active : inactive}`}
+            prefetch
+          >
+            {lang.toUpperCase()}
+          </Link>
+        )
+      })}
     </div>
   )
 }
