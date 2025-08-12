@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaRocket, FaUsers, FaGlobeAmericas, FaStore } from 'react-icons/fa';
 import Image from 'next/image';
+import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -18,14 +19,15 @@ const staggerContainer = {
   }
 };
 
-const stats = [
-  { icon: FaRocket, value: '15+', label: 'Years of Experience', description: 'Delivering excellence in e-commerce' },
-  { icon: FaUsers, value: '50K+', label: 'Happy Customers', description: 'Across the Americas' },
-  { icon: FaGlobeAmericas, value: '50+', label: 'Global Brands', description: 'Trusted partnerships' },
-  { icon: FaStore, value: '5K+', label: 'Products', description: 'Curated for you' },
-];
+const stats = (t) => ([
+  { icon: FaRocket, value: '15+', label: t('about.stats.years'), description: t('about.stats.desc1') },
+  { icon: FaUsers, value: '50K+', label: t('about.stats.customers'), description: t('about.stats.desc2') },
+  { icon: FaGlobeAmericas, value: '50+', label: t('about.stats.brands'), description: t('about.stats.desc3') },
+  { icon: FaStore, value: '5K+', label: t('about.stats.products'), description: t('about.stats.desc4') },
+]);
 
 export default function AboutUs() {
+  const { t } = useI18n();
   return (
     <section
       id="about"
@@ -47,23 +49,21 @@ export default function AboutUs() {
             className="text-4xl md:text-6xl font-bold text-[#F2D300]"
             variants={fadeInUp}
           >
-            About Us
+            {t('about.title')}
           </motion.h2>
           
           <motion.p 
             className="text-base md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
             variants={fadeInUp}
           >
-            Geekshive is a company built by geeks, for geeks. With over 15 years in the e-commerce world, 
-            we've grown from a passion project into a full-scale distribution and logistics partner for global brands.
+            {t('about.p1')}
           </motion.p>
           
           <motion.p 
             className="text-base md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto"
             variants={fadeInUp}
           >
-            We specialize in marketplace strategy, product positioning, and fulfillment — always focused on 
-            making geek culture accessible and engaging for customers across the Americas.
+            {t('about.p2')}
           </motion.p>
         </motion.div>
 
@@ -75,7 +75,7 @@ export default function AboutUs() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          {stats.map((stat, index) => (
+          {stats(t).map((stat, index) => (
             <motion.div
               key={index}
               className="bg-black/40 border border-[#F2D300]/20 backdrop-blur-sm rounded-xl p-6 hover:bg-black/60 hover:border-[#F2D300]/40 transition-all duration-300"
@@ -115,8 +115,8 @@ export default function AboutUs() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-[#F2D300] mb-2">Meet The Team</h3>
-              <p className="text-white/90 text-lg">The passionate minds behind Geekshive</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#F2D300] mb-2">{t('about.meetTeam')}</h3>
+              <p className="text-white/90 text-lg">{t('about.teamSubtitle')}</p>
             </div>
           </div>
         </motion.div>
@@ -129,11 +129,8 @@ export default function AboutUs() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[#F2D300]">Our Mission</h3>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-          To empower passionate consumers across the Americas by delivering curated, geek-inspired products through innovative 
-          e-commerce experiences, while helping brands thrive on marketplaces through tech-driven strategies and fulfillment excellence.
-          </p>
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-[#F2D300]">{t('about.mission')}</h3>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">{t('about.missionText')}</p>
         </motion.div>
       </div>
     </section>

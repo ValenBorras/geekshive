@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
+import { useI18n } from "../i18n/I18nProvider"
 
 // Assuming your images are in public/brands/ folder
 // Update these paths to match your actual folder structure
@@ -21,6 +22,7 @@ const brandsInner = [
 ]
 
 export default function HeroSection() {
+  const { t } = useI18n()
   const [isMounted, setIsMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [imageErrors, setImageErrors] = useState({})
@@ -119,7 +121,7 @@ export default function HeroSection() {
                 className="relative z-20 text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-raleway font-bold bg-white rounded-full p-6 md:p-8 lg:p-12 inline-block shadow-md border-[#F2D300] border-4"
                 style={{ boxShadow: "0 0 80px #F2D300" }}
               >
-                Geeks<span className="text-[#F2D300]">Hive</span>: Your online geek store.
+                {t('hero.title')}
               </h1>
             </div>
           </div>
@@ -153,7 +155,7 @@ export default function HeroSection() {
               <div className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold font-raleway">
                 50+
               </div>
-              <div className="text-white text-lg sm:text-xl md:text-2xl font-normal font-raleway mt-2">brands</div>
+              <div className="text-white text-lg sm:text-xl md:text-2xl font-normal font-raleway mt-2">{t('hero.brands')}</div>
             </div>
 
             {/* Only render orbits after component is mounted */}

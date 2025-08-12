@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
+import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -11,6 +12,7 @@ const fadeInUp = {
 };
 
 export default function Contact() {
+  const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -61,13 +63,8 @@ export default function Contact() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">
-            Get in Touch
-          </h2>
-          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-            Have questions about our products or services? We'd love to hear from you. 
-            Fill out the form below and we'll get back to you as soon as possible.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">{t('contact.title')}</h2>
+          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">{t('contact.desc')}</p>
         </motion.div>
 
         {/* Contact Form */}
@@ -87,7 +84,7 @@ export default function Contact() {
                   name="name"
                   required
                   className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                  placeholder="Your Name"
+                  placeholder={t('contact.yourName')}
                 />
               </div>
 
@@ -98,7 +95,7 @@ export default function Contact() {
                   name="email"
                   required
                   className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                  placeholder="Your Email"
+                  placeholder={t('contact.yourEmail')}
                 />
               </div>
             </div>
@@ -110,7 +107,7 @@ export default function Contact() {
                 name="subject"
                 required
                 className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                placeholder="Subject"
+                placeholder={t('contact.subject')}
               />
             </div>
 
@@ -121,7 +118,7 @@ export default function Contact() {
                 required
                 rows="6"
                 className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors resize-none"
-                placeholder="Your Message"
+                placeholder={t('contact.yourMessage')}
               />
             </div>
 
@@ -135,7 +132,7 @@ export default function Contact() {
                   disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <span className="flex items-center space-x-2">
-                  <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                  <span>{isSubmitting ? t('contact.sending') : t('contact.send')}</span>
                   <FaPaperPlane className={`transform transition-transform duration-300 
                     ${isSubmitting ? 'translate-x-2' : 'group-hover:translate-x-1'}`} 
                   />
@@ -155,8 +152,8 @@ export default function Contact() {
                 }`}
               >
                 {submitStatus === 'success' 
-                  ? 'Message sent successfully! We\'ll get back to you soon.' 
-                  : 'Something went wrong. Please try again.'}
+                  ? t('contact.success') 
+                  : t('contact.error')}
               </motion.div>
             )}
           </form>

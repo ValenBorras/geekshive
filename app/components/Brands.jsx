@@ -1,11 +1,13 @@
 'use client';
 
 import React from 'react';
-import AliceCarousel from 'react-alice-carousel';
+import dynamic from 'next/dynamic';
+const AliceCarousel = dynamic(() => import('react-alice-carousel'), { ssr: false });
 import 'react-alice-carousel/lib/alice-carousel.css';
 import brands from '@/data/brands.json';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -41,6 +43,7 @@ const Brands = () => {
     </div>
   ));
 
+  const { t } = useI18n();
   return (
     <section id="brands" className="relative z-10 mt-24 w-full bg-white/10 border-white/12 border-1 text-black py-15 overflow-hidden">
       {/* Title and Description */}
@@ -51,14 +54,8 @@ const Brands = () => {
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">
-          Our Brands
-        </h2>
-        <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-          We partner with the most innovative and exciting brands in geek culture. 
-          From gaming to collectibles, our curated selection brings you the best products 
-          from industry leaders and emerging creators.
-        </p>
+        <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">{t('brands.title')}</h2>
+        <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">{t('brands.description')}</p>
       </motion.div>
 
       {/* Original Carousel */}

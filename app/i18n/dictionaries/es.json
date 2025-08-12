@@ -1,0 +1,158 @@
+{
+  "common": {
+    "brand": "GEEKSHIVE",
+    "tagline": "Tu tienda geek online.",
+    "menu": "Menú",
+    "followUs": "Síguenos",
+    "contact": "Contacto",
+    "poweredBy": "Hecho por ValenBorras",
+    "rights": "© 2025 Geekshive Inc. Todos los derechos reservados.",
+    "language": "Idioma"
+  },
+  "nav": {
+    "home": "Inicio",
+    "marketplaces": "Marketplaces",
+    "brands": "Marcas",
+    "about": "Nosotros",
+    "boosting": "Impulso",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "title": "GeeksHive: Tu tienda geek online.",
+    "brands": "marcas"
+  },
+  "about": {
+    "title": "Sobre Nosotros",
+    "p1": "Geekshive es una empresa hecha por geeks, para geeks. Con más de 15 años en el mundo del e-commerce, pasamos de ser un proyecto de pasión a un socio integral de distribución y logística para marcas globales.",
+    "p2": "Nos especializamos en estrategia para marketplaces, posicionamiento de productos y fulfillment — siempre enfocados en hacer que la cultura geek sea accesible y atractiva para clientes en toda América.",
+    "meetTeam": "Conoce al Equipo",
+    "teamSubtitle": "Las mentes apasionadas detrás de Geekshive",
+    "mission": "Nuestra Misión",
+    "missionText": "Empoderar a los consumidores apasionados en las Américas ofreciendo productos curados e inspirados en la cultura geek mediante experiencias de e-commerce innovadoras, mientras ayudamos a las marcas a crecer en marketplaces con estrategias impulsadas por tecnología y excelencia en fulfillment.",
+    "stats": {
+      "years": "Años de Experiencia",
+      "customers": "Clientes Felices",
+      "brands": "Marcas Globales",
+      "products": "Productos",
+      "desc1": "Excelencia en e-commerce",
+      "desc2": "En toda América",
+      "desc3": "Alianzas de confianza",
+      "desc4": "Curado para ti"
+    }
+  },
+  "brands": {
+    "title": "Nuestras Marcas",
+    "description": "Nos asociamos con las marcas más innovadoras y emocionantes de la cultura geek. Desde videojuegos hasta coleccionables, nuestra selección curada te acerca los mejores productos de líderes de la industria y creadores emergentes."
+  },
+  "marketplaces": {
+    "ml_mx_desc": "Tenemos una presencia activa y en crecimiento en el **marketplace más grande de México**. Con una red logística sólida y estatus de vendedor autorizado, garantizamos **cumplimiento confiable y visibilidad** para cada producto. Nuestra estrategia se centra en localización, entregas rápidas y optimización de listings para compradores mexicanos.",
+    "ml_ar_desc": "En Argentina, nos especializamos en **lanzar y escalar marcas** mediante contenido a medida, manejo eficiente de inventario y colocación promocional. Como vendedores oficiales, aportamos **experiencia local y conocimiento del mercado** en uno de los espacios digitales más competitivos de Sudamérica.",
+    "amazon_desc": "Con más de **15 años de experiencia** en Amazon y más de **62.000 reseñas verificadas**, Geekshive es uno de los **vendedores más confiables** de la plataforma. Brindamos soporte para logística FBA y ayudamos a que los productos crezcan dentro de un sistema diseñado para **conversión, rendimiento y visibilidad de marca**."
+  },
+  "boosting": {
+    "questionTitle": "¿Tu marca está <span class=\"text-[#F2D300]\">estancada en ventas</span>?",
+    "questionDesc": "¿Te cuesta crecer en marketplaces? ¿No sabes cómo dar el siguiente paso? <br /> <span class=\"text-[#F2D300] font-semibold\">Hemos ayudado a marcas como la tuya a transformar su rendimiento.</span>",
+    "title": "Servicios de Impulso de Marca",
+    "desc": "Lleva tu presencia en marketplaces al siguiente nivel con nuestros servicios integrales de impulso de marca. Ya sea en Amazon o Mercado Libre, ayudamos a las marcas a crecer mediante gestión estratégica de cuentas y optimización.",
+    "ctaTitle": "¿Listo para impulsar tu marca?",
+    "ctaDesc": "Conversemos sobre cómo podemos ayudar a tu marca a crecer en Amazon y Mercado Libre. Nuestro equipo está listo para crear una estrategia personalizada para tu éxito.",
+    "ctaButton": "Comenzar",
+    "services": {
+      "account": {
+        "title": "Gestión de Cuenta",
+        "desc": "Gestión integral de tu cuenta de vendedor en Amazon y Mercado Libre. Nos encargamos de todo, desde el inventario hasta la atención al cliente, para que te enfoques en tu marca.",
+        "features": [
+          "Supervisión completa de la cuenta",
+          "Gestión de inventario",
+          "Atención al cliente",
+          "Monitoreo de desempeño"
+        ]
+      },
+      "storefront": {
+        "title": "Mejora de Storefront",
+        "desc": "Transforma tu presencia en marketplaces con un storefront profesional, enfocado en conversión y que destaque frente a la competencia.",
+        "features": [
+          "Diseño de storefront a medida",
+          "Integración de historia de marca",
+          "Categorización de productos",
+          "Visual merchandising"
+        ]
+      },
+      "listingOpt": {
+        "title": "Optimización de Listings",
+        "desc": "Maximiza la visibilidad y la conversión de tus productos con estrategias de optimización basadas en datos.",
+        "features": [
+          "Optimización SEO",
+          "Mejora de contenidos",
+          "Optimización de imágenes",
+          "Análisis competitivo"
+        ]
+      },
+      "listingCreate": {
+        "title": "Creación de Listings",
+        "desc": "Servicio profesional de creación de listings para causar la mejor primera impresión y potenciar las ventas.",
+        "features": [
+          "Investigación de palabras clave",
+          "Descripciones persuasivas",
+          "Fotografía profesional",
+          "Creación de contenido A+"
+        ]
+      },
+      "marketing": {
+        "title": "Marketing y Promoción",
+        "desc": "Campañas estratégicas para aumentar la visibilidad de tu marca y las ventas en marketplaces.",
+        "features": [
+          "Gestión de anuncios patrocinados",
+          "Campañas promocionales",
+          "Integración con redes sociales",
+          "Email marketing"
+        ]
+      },
+      "analytics": {
+        "title": "Analítica y Reportes",
+        "desc": "Analítica integral y reportes periódicos para monitorear el desempeño y crecimiento de tu marca.",
+        "features": [
+          "Métricas de rendimiento",
+          "Analítica de ventas",
+          "Seguimiento de competidores",
+          "Insights de crecimiento"
+        ]
+      }
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "desc": "¿Tienes preguntas sobre nuestros productos o servicios? Nos encantaría escucharte. Completa el formulario y te responderemos a la brevedad.",
+    "yourName": "Tu Nombre",
+    "yourEmail": "Tu Email",
+    "subject": "Asunto",
+    "yourMessage": "Tu Mensaje",
+    "send": "Enviar Mensaje",
+    "sending": "Enviando...",
+    "success": "¡Mensaje enviado con éxito! Te contactaremos pronto.",
+    "error": "Algo salió mal. Inténtalo nuevamente."
+  },
+  "footer": {
+    "menu": {
+      "aboutUs": "Nosotros",
+      "marketplaces": "Marketplaces",
+      "brands": "Marcas",
+      "boosting": "Impulso",
+      "contact": "Contacto"
+    },
+    "contact": {
+      "title": "Contacto",
+      "email": "Email",
+      "phone": "Teléfono",
+      "city": "Miami, Florida, USA"
+    }
+  },
+  "doss": {
+    "new": "¡NOVEDAD!",
+    "headline": "Geekshive trajo la marca <span class=\"text-yellow-400 font-extrabold\">DOSS</span> a <span class=\"text-slate-200 font-bold\"><span class=\"underline decoration-yellow-400 decoration-2 underline-offset-2\">Argentina</span> y <span class=\"underline decoration-yellow-400 decoration-2 underline-offset-2\">México</span></span>",
+    "features": "Parlantes premium • Sonido superior • Bluetooth 5.3 • Precios accesibles • Resistentes al agua",
+    "cta": "Descubrí DOSS en www.dosslatam.com"
+  }
+}
+
+

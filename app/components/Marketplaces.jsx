@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FaAmazon } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import React from 'react'
+import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -38,38 +39,32 @@ const formatDescription = (text) => {
   });
 };
 
-const marketplaces = [
+const buildMarketplaces = (t) => [
   {
     name: 'Mercado Libre México',
     link: 'https://www.mercadolibre.com.mx/pagina/geekshivemxf?item_id=MLM2141063737&category_id=MLM151595&seller_id=1855979976&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=eshop',
     image: '/MLmex.png',
     icon: null,
-    description: `We have an active and growing presence in **Mexico's largest online marketplace**.
-    With a solid logistics network and authorized seller status, we ensure **reliable fulfillment and visibility** for every product.
-    Our strategy focuses on localization, fast delivery, and listing optimization tailored to Mexican buyers.`,
+    description: t('marketplaces.ml_mx_desc'),
   },
   {
     name: 'Mercado Libre Argentina',
     link: 'https://www.mercadolibre.com.ar/pagina/geekshivearf?item_id=MLA2046284742&category_id=MLA412089&seller_id=2378407094&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=eshop',
     image: '/MLarg.png',
     icon: null,
-    description: `In Argentina, we specialize in **launching and scaling brands** through custom content,
-    efficient inventory handling, and promotional placement. As official sellers, we bring **local experience and market insight**
-    into one of South America's most competitive digital spaces.`,
+    description: t('marketplaces.ml_ar_desc'),
   },
   {
     name: 'Amazon',
     link: 'https://www.amazon.com/sp?ie=UTF8&seller=A1MD6J1KVR2O2V&isAmazonFulfilled=1&asin=B0DQ92ZKMW&ref_=olp_merch_name_1',
     image: null,
     icon: <FaAmazon size={100} className="mx-auto text-white" />,
-    description: `With over **15 years of experience** on Amazon and more than **62,000 verified reviews**,
-    Geekshive is one of the most **trusted sellers** on the platform.
-    We support both FBA logistics and help products grow by placing them into
-    a system built for **conversion, performance, and brand visibility**.`,
+    description: t('marketplaces.amazon_desc'),
   },
 ];
 
 export default function Marketplaces() {
+  const { t } = useI18n();
   const [iconSize, setIconSize] = useState(100);
   
   // Adjust icon size based on screen width
@@ -97,7 +92,7 @@ export default function Marketplaces() {
   return (
     <div id="marketplaces" className="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-16">
-        {marketplaces.map((item, i) => (
+        {buildMarketplaces(t).map((item, i) => (
           <motion.div
             key={i}
             custom={i}

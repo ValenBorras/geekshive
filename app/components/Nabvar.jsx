@@ -3,8 +3,10 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useI18n } from '../i18n/I18nProvider';
 
 export default function Navbar() {
+  const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -26,7 +28,14 @@ export default function Navbar() {
     }
   };
 
-  const navItems = ['Home', 'Marketplaces', 'Brands', 'About', 'Boosting', 'Contact'];
+  const navItems = [
+    { label: t('nav.home'), id: 'home' },
+    { label: t('nav.marketplaces'), id: 'marketplaces' },
+    { label: t('nav.brands'), id: 'brands' },
+    { label: t('nav.about'), id: 'about' },
+    { label: t('nav.boosting'), id: 'boosting' },
+    { label: t('nav.contact'), id: 'contact' },
+  ];
 
   return (
     <nav className={'w-full fixed top-0 left-0 z-50 transition-all duration-300 bg-black/80 backdrop-blur-md '}>
@@ -47,13 +56,13 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6 text-[#F2D300] font-raleway font-semibold text-base">
-            {navItems.map((text) => (
+            {navItems.map((item) => (
               <button
-                key={text}
-                onClick={() => scrollToSection(text)}
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
                 className="relative transition hover:drop-shadow-[0_0_6px_#F2D300] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#F2D300] after:transition-all hover:after:w-full focus:outline-none"
               >
-                {text}
+                {item.label}
               </button>
             ))}
           </div>
@@ -73,13 +82,13 @@ export default function Navbar() {
           isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         } overflow-hidden`}>
           <div className="flex flex-col space-y-4 py-4">
-            {navItems.map((text) => (
+            {navItems.map((item) => (
               <button
-                key={text}
-                onClick={() => scrollToSection(text)}
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
                 className="text-[#F2D300] font-raleway font-semibold text-base transition hover:drop-shadow-[0_0_6px_#F2D300] focus:outline-none"
               >
-                {text}
+                {item.label}
               </button>
             ))}
           </div>

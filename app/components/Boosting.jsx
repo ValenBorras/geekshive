@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaRocket, FaStore, FaChartLine, FaShoppingCart, FaBullhorn, FaSearch } from 'react-icons/fa';
 import { useRef } from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -18,76 +19,47 @@ const staggerContainer = {
   }
 };
 
-const services = [
+const services = (t) => [
   {
     icon: FaRocket,
-    title: "Account Management",
-    description: "Full-service management of your seller account on Amazon and Mercado Libre. We handle everything from inventory to customer service, letting you focus on your brand.",
-    features: [
-      "Complete account oversight",
-      "Inventory management",
-      "Customer service handling",
-      "Performance monitoring"
-    ]
+    title: t('boosting.services.account.title'),
+    description: t('boosting.services.account.desc'),
+    features: t('boosting.services.account.features'),
   },
   {
     icon: FaStore,
-    title: "Storefront Enhancement",
-    description: "Transform your marketplace presence with a professional, conversion-focused storefront that stands out from competitors.",
-    features: [
-      "Custom storefront design",
-      "Brand story integration",
-      "Product categorization",
-      "Visual merchandising"
-    ]
+    title: t('boosting.services.storefront.title'),
+    description: t('boosting.services.storefront.desc'),
+    features: t('boosting.services.storefront.features'),
   },
   {
     icon: FaChartLine,
-    title: "Listing Optimization",
-    description: "Maximize your product visibility and conversion rates with data-driven listing optimization strategies.",
-    features: [
-      "SEO optimization",
-      "Content enhancement",
-      "Image optimization",
-      "Competitive analysis"
-    ]
+    title: t('boosting.services.listingOpt.title'),
+    description: t('boosting.services.listingOpt.desc'),
+    features: t('boosting.services.listingOpt.features'),
   },
   {
     icon: FaShoppingCart,
-    title: "Listing Creation",
-    description: "Professional listing creation service that ensures your products make a strong first impression and drive sales.",
-    features: [
-      "Keyword research",
-      "Compelling descriptions",
-      "Professional photography",
-      "A+ Content creation"
-    ]
+    title: t('boosting.services.listingCreate.title'),
+    description: t('boosting.services.listingCreate.desc'),
+    features: t('boosting.services.listingCreate.features'),
   },
   {
     icon: FaBullhorn,
-    title: "Marketing & Promotion",
-    description: "Strategic marketing campaigns to boost your brand visibility and drive sales on marketplaces.",
-    features: [
-      "Sponsored ads management",
-      "Promotional campaigns",
-      "Social media integration",
-      "Email marketing"
-    ]
+    title: t('boosting.services.marketing.title'),
+    description: t('boosting.services.marketing.desc'),
+    features: t('boosting.services.marketing.features'),
   },
   {
     icon: FaSearch,
-    title: "Analytics & Reporting",
-    description: "Comprehensive analytics and regular reporting to track your brand's performance and growth.",
-    features: [
-      "Performance metrics",
-      "Sales analytics",
-      "Competitor tracking",
-      "Growth insights"
-    ]
-  }
+    title: t('boosting.services.analytics.title'),
+    description: t('boosting.services.analytics.desc'),
+    features: t('boosting.services.analytics.features'),
+  },
 ];
 
 export default function Boosting() {
+  const { t } = useI18n();
   // Use the same scroll behavior as Navbar
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());
@@ -110,15 +82,8 @@ export default function Boosting() {
           viewport={{ once: true }}
         >
           <div className="bg-black/40 border border-[#F2D300]/20 rounded-2xl p-8 md:p-12 transform hover:scale-[1.02] transition-all duration-300">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Is Your Brand <span className="text-[#F2D300]">Stuck in a Sales Plateau</span>?
-            </h2>
-            <p className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-              Struggling to grow your marketplace presence? 
-              Don't know how to break through to the next level?
-              <br />
-              <span className="text-[#F2D300] font-semibold">We've helped brands like yours transform their marketplace performance.</span>
-            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6" dangerouslySetInnerHTML={{ __html: t('boosting.questionTitle') }} />
+            <p className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: t('boosting.questionDesc') }} />
           </div>
         </motion.div>
 
@@ -130,14 +95,8 @@ export default function Boosting() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">
-            Brand Boosting Services
-          </h2>
-          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">
-            Take your marketplace presence to the next level with our comprehensive brand boosting services. 
-            Whether you're on Amazon or Mercado Libre, we help brands grow through strategic account management 
-            and optimization.
-          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">{t('boosting.title')}</h2>
+          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">{t('boosting.desc')}</p>
         </motion.div>
 
         {/* Services Grid */}
@@ -148,7 +107,7 @@ export default function Boosting() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          {services.map((service, index) => (
+          {services(t).map((service, index) => (
             <motion.div
               key={index}
               className="bg-black/40 border border-[#F2D300]/20 rounded-xl p-6 hover:bg-black/60 hover:border-[#F2D300]/40 transition-all duration-300"
@@ -201,7 +160,7 @@ export default function Boosting() {
                   transition-all duration-300 hover:bg-[#F2D300]/80 hover:scale-105 focus:outline-none cursor-pointer"
                 style={{ pointerEvents: 'auto' }}
               >
-                Get Started
+                {t('boosting.ctaButton')}
               </button>
             </div>
           </div>
