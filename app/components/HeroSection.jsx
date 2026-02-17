@@ -233,8 +233,8 @@ export default function HeroSection() {
                           ease: "linear",
                         }}
                         initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: 0.3 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div
                           className={`w-full h-full rounded-full shadow-lg ring-1 ring-white/10 ${
@@ -294,8 +294,8 @@ export default function HeroSection() {
                           ease: "linear",
                         }}
                         initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4, delay: 0.5 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div
                           className={`w-full h-full rounded-full shadow-lg ring-1 ring-white/10 ${
@@ -332,7 +332,7 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
+        transition={{ delay: 1 }}
       >
         <motion.div
           className="w-5 h-8 rounded-full border-2 border-white/30 flex items-start justify-center p-1"
