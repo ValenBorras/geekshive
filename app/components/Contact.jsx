@@ -6,15 +6,15 @@ import { FaPaperPlane } from 'react-icons/fa';
 import { useI18n } from '../i18n/I18nProvider';
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  initial: { opacity: 0, y: 25 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Contact() {
   const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [focusedField, setFocusedField] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,22 +49,24 @@ export default function Contact() {
     }
   };
 
+  const inputClasses = "w-full px-5 py-3.5 bg-white/[0.03] border border-[#F2D300]/15 rounded-xl focus:outline-none focus:border-[#F2D300]/50 focus:bg-white/[0.05] focus:shadow-[0_0_20px_rgba(242,211,0,0.08)] text-white placeholder-white/30 transition-all duration-300";
+
   return (
-    <section id="contact" className="w-full pt-16 pb-28 px-6 md:px-24 font-raleway relative overflow-hidden">
-      {/* Background gradient - centered in the section */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F2D300]/5 to-transparent" />
+    <section id="contact" className="w-full pt-20 pb-28 px-6 md:px-24 font-raleway relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#F2D300]/[0.03] to-transparent pointer-events-none" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Title and Description */}
         <motion.div 
-          className="text-center space-y-6 mb-16"
+          className="text-center space-y-5 mb-16"
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F2D300]">{t('contact.title')}</h2>
-          <p className="text-base md:text-lg text-white/80 leading-relaxed max-w-3xl mx-auto">{t('contact.desc')}</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F2D300]">{t('contact.title')}</h2>
+          <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-3xl mx-auto">{t('contact.desc')}</p>
         </motion.div>
 
         {/* Contact Form */}
@@ -75,88 +77,99 @@ export default function Contact() {
           viewport={{ once: true }}
           variants={fadeInUp}
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Name Field */}
+          <div className="glass-card rounded-2xl p-8 md:p-10">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* Name Field */}
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className={inputClasses}
+                    placeholder={t('contact.yourName')}
+                    onFocus={() => setFocusedField('name')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </div>
+
+                {/* Email Field */}
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className={inputClasses}
+                    placeholder={t('contact.yourEmail')}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
+                  />
+                </div>
+              </div>
+
+              {/* Subject Field */}
               <div className="relative">
                 <input
                   type="text"
-                  name="name"
+                  name="subject"
                   required
-                  className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                  placeholder={t('contact.yourName')}
+                  className={inputClasses}
+                  placeholder={t('contact.subject')}
+                  onFocus={() => setFocusedField('subject')}
+                  onBlur={() => setFocusedField(null)}
                 />
               </div>
 
-              {/* Email Field */}
+              {/* Message Field */}
               <div className="relative">
-                <input
-                  type="email"
-                  name="email"
+                <textarea
+                  name="message"
                   required
-                  className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                  placeholder={t('contact.yourEmail')}
+                  rows="6"
+                  className={`${inputClasses} resize-none`}
+                  placeholder={t('contact.yourMessage')}
+                  onFocus={() => setFocusedField('message')}
+                  onBlur={() => setFocusedField(null)}
                 />
               </div>
-            </div>
 
-            {/* Subject Field */}
-            <div className="relative">
-              <input
-                type="text"
-                name="subject"
-                required
-                className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors"
-                placeholder={t('contact.subject')}
-              />
-            </div>
-
-            {/* Message Field */}
-            <div className="relative">
-              <textarea
-                name="message"
-                required
-                rows="6"
-                className="w-full px-4 py-3 bg-black/40 border border-[#F2D300]/20 rounded-lg focus:outline-none focus:border-[#F2D300] text-white placeholder-white/50 transition-colors resize-none"
-                placeholder={t('contact.yourMessage')}
-              />
-            </div>
-
-            {/* Submit Button */}
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`group relative px-8 py-3 bg-[#F2D300] text-black font-semibold rounded-lg 
-                  transition-all duration-300 hover:bg-[#F2D300]/80 hover:scale-105 
-                  disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
-                <span className="flex items-center space-x-2">
+              {/* Submit Button */}
+              <div className="flex justify-center pt-2">
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`group relative inline-flex items-center gap-2 px-8 py-3.5 bg-[#F2D300] text-black font-bold rounded-full 
+                    transition-all duration-300 hover:bg-[#ffe44d] shadow-[0_0_25px_rgba(242,211,0,0.2)] hover:shadow-[0_0_40px_rgba(242,211,0,0.35)]
+                    disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none`}
+                  whileHover={!isSubmitting ? { scale: 1.05 } : {}}
+                  whileTap={!isSubmitting ? { scale: 0.97 } : {}}
+                >
                   <span>{isSubmitting ? t('contact.sending') : t('contact.send')}</span>
-                  <FaPaperPlane className={`transform transition-transform duration-300 
-                    ${isSubmitting ? 'translate-x-2' : 'group-hover:translate-x-1'}`} 
+                  <FaPaperPlane className={`text-sm transition-transform duration-300 
+                    ${isSubmitting ? 'translate-x-2 -translate-y-1' : 'group-hover:translate-x-1'}`} 
                   />
-                </span>
-              </button>
-            </div>
+                </motion.button>
+              </div>
 
-            {/* Status Message */}
-            {submitStatus && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`text-center p-4 rounded-lg ${
-                  submitStatus === 'success' 
-                    ? 'bg-green-500/20 text-green-300' 
-                    : 'bg-red-500/20 text-red-300'
-                }`}
-              >
-                {submitStatus === 'success' 
-                  ? t('contact.success') 
-                  : t('contact.error')}
-              </motion.div>
-            )}
-          </form>
+              {/* Status Message */}
+              {submitStatus && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className={`text-center p-4 rounded-xl text-sm font-medium ${
+                    submitStatus === 'success' 
+                      ? 'bg-green-500/10 text-green-400 border border-green-500/20' 
+                      : 'bg-red-500/10 text-red-400 border border-red-500/20'
+                  }`}
+                >
+                  {submitStatus === 'success' 
+                    ? t('contact.success') 
+                    : t('contact.error')}
+                </motion.div>
+              )}
+            </form>
+          </div>
         </motion.div>
       </div>
     </section>

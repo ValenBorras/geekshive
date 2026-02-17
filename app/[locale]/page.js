@@ -11,15 +11,20 @@ import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   return (
-    <div className=" bg-[url('/fondoColmena1.png')]  ">
+    <div className="bg-[url('/fondoColmena1.png')] bg-fixed bg-cover min-h-screen">
       <Analytics />
       <Navbar />
       <HeroSection />
       <DossBanner />
+      <div className="section-divider" />
       <Marketplaces />
+      <div className="section-divider" />
       <Brands />
+      <div className="section-divider" />
       <AboutUs />
+      <div className="section-divider" />
       <Boosting />
+      <div className="section-divider" />
       <Contact />
       <Footer />
     </div>

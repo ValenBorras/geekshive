@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaRocket, FaUsers, FaGlobeAmericas, FaStore } from 'react-icons/fa';
 import Image from 'next/image';
 import { useI18n } from '../i18n/I18nProvider';
+import { useState } from 'react';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -26,8 +27,48 @@ const stats = (t) => ([
   { icon: FaStore, value: '5K+', label: t('about.stats.products'), description: t('about.stats.desc4') },
 ]);
 
+const teamMembers = (t) => ([
+  {
+    name: 'Francisco Borras',
+    title: t('about.team.francisco.title'),
+    description: t('about.team.francisco.desc'),
+    image: '/Team/fran.png',
+    focus: t('about.team.francisco.focus'),
+  },
+  {
+    name: 'Joaquín Petric',
+    title: t('about.team.joaquin.title'),
+    description: t('about.team.joaquin.desc'),
+    image: '/Team/jope.png',
+    focus: t('about.team.joaquin.focus'),
+  },
+  {
+    name: 'Agustín Acosta',
+    title: t('about.team.agustin.title'),
+    description: t('about.team.agustin.desc'),
+    image: '/Team/agus.png',
+    focus: t('about.team.agustin.focus'),
+  },
+  {
+    name: 'Matías Jacob',
+    title: t('about.team.matias.title'),
+    description: t('about.team.matias.desc'),
+    image: '/Team/mati.png',
+    focus: t('about.team.matias.focus'),
+  },
+  {
+    name: 'Valentina Borras',
+    title: t('about.team.valentina.title'),
+    description: t('about.team.valentina.desc'),
+    image: '/Team/valen.jpg',
+    focus: t('about.team.valentina.focus'),
+  },
+]);
+
 export default function AboutUs() {
   const { t } = useI18n();
+  const [flipped, setFlipped] = useState(null);
+
   return (
     <section
       id="about"
@@ -96,28 +137,74 @@ export default function AboutUs() {
           ))}
         </motion.div>
 
-        {/* Team Image Section */}
+        {/* Team Section */}
         <motion.div 
-          className="mt-20 mb-20"
+          className="mt-24 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <div className="relative w-full max-w-4xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl border-2 border-[#F2D300]/20 hover:border-[#F2D300]/40 transition-all duration-300">
-            <Image
-              src="/GroupGH.JPEG"
-              alt="The Geekshive Team"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-[#F2D300] mb-2">{t('about.meetTeam')}</h3>
-              <p className="text-white/90 text-lg">{t('about.teamSubtitle')}</p>
-            </div>
+          <div className="text-center mb-14">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#F2D300] mb-3">{t('about.meetTeam')}</h3>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto">{t('about.teamSubtitle')}</p>
+          </div>
+
+          {/* Team grid - 3 top, 2 bottom centered */}
+          <div className="flex flex-col items-center gap-6">
+            {/* First row - 3 members */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {teamMembers(t).slice(0, 3).map((member) => (
+                <motion.div
+                  key={member.name}
+                  className="group relative bg-black/40 border border-[#F2D300]/20 rounded-2xl p-5 flex flex-col items-center text-center hover:border-[#F2D300]/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(242,211,0,0.08)]"
+                  variants={fadeInUp}
+                >
+                  <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
+                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="128px" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
+                  <p className="text-[#F2D300] font-semibold text-xs mb-3 leading-snug">{member.title}</p>
+                  <p className="text-white/60 text-xs leading-relaxed mb-3">{member.description}</p>
+                  <span className="inline-block bg-[#F2D300]/10 border border-[#F2D300]/20 text-[#F2D300]/80 text-[10px] font-medium px-2.5 py-1 rounded-full">
+                    {member.focus}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Second row - 2 members centered */}
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl lg:max-w-[66%]"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {teamMembers(t).slice(3).map((member) => (
+                <motion.div
+                  key={member.name}
+                  className="group relative bg-black/40 border border-[#F2D300]/20 rounded-2xl p-5 flex flex-col items-center text-center hover:border-[#F2D300]/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(242,211,0,0.08)]"
+                  variants={fadeInUp}
+                >
+                  <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
+                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="128px" />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
+                  <p className="text-[#F2D300] font-semibold text-xs mb-3 leading-snug">{member.title}</p>
+                  <p className="text-white/60 text-xs leading-relaxed mb-3">{member.description}</p>
+                  <span className="inline-block bg-[#F2D300]/10 border border-[#F2D300]/20 text-[#F2D300]/80 text-[10px] font-medium px-2.5 py-1 rounded-full">
+                    {member.focus}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </motion.div>
 

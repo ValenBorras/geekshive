@@ -16,22 +16,23 @@ export default function LanguageToggle() {
   const normalizedRest = restPath === '/' ? '' : restPath
 
   return (
-    <div className="flex items-center gap-3 text-xs">
-      {SUPPORTED_LOCALES.map((lang) => {
-        const base = 'text-[#F2D300] transition hover:drop-shadow-[0_0_6px_#F2D300]'
-        const active = 'font-semibold underline underline-offset-4'
-        const inactive = 'opacity-80 hover:opacity-100'
-        return (
+    <div className="flex items-center gap-1 text-xs">
+      {SUPPORTED_LOCALES.map((lang, i) => (
+        <span key={lang} className="flex items-center gap-1">
+          {i > 0 && <span className="text-white/20 mx-0.5">/</span>}
           <Link
-            key={lang}
             href={`/${lang}${normalizedRest}`}
-            className={`${base} ${currentLocale === lang ? active : inactive}`}
+            className={`px-2 py-1 rounded-md transition-all duration-300 ${
+              currentLocale === lang
+                ? 'text-black bg-[#F2D300] font-bold'
+                : 'text-[#F2D300]/60 hover:text-[#F2D300] hover:bg-white/5'
+            }`}
             prefetch
           >
             {lang.toUpperCase()}
           </Link>
-        )
-      })}
+        </span>
+      ))}
     </div>
   )
 }

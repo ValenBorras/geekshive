@@ -1,42 +1,73 @@
 'use client'
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useI18n } from '../i18n/I18nProvider';
 
 const DossBanner = () => {
   const { t } = useI18n();
   return (
-    <div className="relative w-full bg-white/5 border-t-1 border-b-1 border-yellow-400/30 py-6">
-      {/* Patrón de fondo sutil */}
-      <div className="absolute inset-0 bg-gradient-to-r from-yellow-50 to-orange-50 opacity-5"></div>
+    <motion.div
+      className="relative w-full bg-white/[0.03] backdrop-blur-sm border-t border-b border-[#F2D300]/15 py-8 md:py-10 overflow-hidden"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Ambient glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F2D300]/[0.03] to-transparent" />
       
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="text-center max-w-6xl mx-auto">
-          <div className="mb-4">
-            <span className="bg-yellow-400 text-black font-bold px-4 py-2 rounded-full text-sm md:text-base uppercase tracking-wide shadow-lg border-2 border-yellow-300">
+      <div className="relative z-10 container mx-auto px-6">
+        <div className="text-center max-w-4xl mx-auto">
+          <motion.div
+            className="mb-5"
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="inline-flex items-center gap-2 bg-[#F2D300] text-black font-bold px-5 py-2 rounded-full text-xs md:text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(242,211,0,0.3)]">
               🎵 {t('doss.new')}
             </span>
-          </div>
+          </motion.div>
           
-          <h2
-            className="text-white font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight mb-3"
+          <motion.h2
+            className="text-white font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight mb-4"
             dangerouslySetInnerHTML={{ __html: t('doss.headline') }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
           />
           
-          <p className="text-slate-200 font-medium text-sm md:text-base lg:text-lg mb-5 max-w-4xl mx-auto">
-            {t('doss.features')}
-          </p>
-          
-          <Link 
-            href="https://www.dosslatam.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-block bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold px-6 py-3 rounded-full text-sm md:text-base lg:text-lg hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-xl border-2 border-yellow-600 hover:shadow-2xl"
+          <motion.p
+            className="text-white/60 font-medium text-sm md:text-base lg:text-lg mb-6 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
-            {t('doss.cta')}
-          </Link>
+            {t('doss.features')}
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            <Link 
+              href="https://www.dosslatam.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 bg-[#F2D300] text-black font-bold px-7 py-3 rounded-full text-sm md:text-base hover:bg-[#ffe44d] transition-all duration-300 hover:scale-105 shadow-[0_0_25px_rgba(242,211,0,0.2)] hover:shadow-[0_0_40px_rgba(242,211,0,0.35)]"
+            >
+              {t('doss.cta')}
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

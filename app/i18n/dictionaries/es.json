@@ -27,6 +27,33 @@
     "p2": "Nos especializamos en estrategia para marketplaces, posicionamiento de productos y fulfillment — siempre enfocados en hacer que la cultura geek sea accesible y atractiva para clientes en toda América.",
     "meetTeam": "Conoce al Equipo",
     "teamSubtitle": "Las mentes apasionadas detrás de Geekshive",
+    "team": {
+      "francisco": {
+        "title": "Fundador & CEO",
+        "desc": "Fundador y CEO responsable de la estrategia global, crecimiento y performance operacional en Estados Unidos y LATAM.",
+        "focus": "Estrategia · Performance · Crecimiento"
+      },
+      "joaquin": {
+        "title": "Director Regional de Operaciones – LATAM Sur",
+        "desc": "Lidera la estrategia operativa y comercial en Argentina, Colombia y Chile, optimizando pricing, promociones y rentabilidad.",
+        "focus": "Marketplace Growth · Revenue"
+      },
+      "agustin": {
+        "title": "Director Regional de Operaciones – México & Brasil",
+        "desc": "Responsable del crecimiento, posicionamiento y optimización de rentabilidad en los mercados de México y Brasil.",
+        "focus": "Expansión · Marketplace Strategy"
+      },
+      "matias": {
+        "title": "Director de Amazon & Desarrollo de Marca",
+        "desc": "Lidera la unidad Amazon, el desarrollo de proveedores estratégicos y la construcción de marcas propias.",
+        "focus": "Sourcing · Brand Development"
+      },
+      "valentina": {
+        "title": "Chief Technology & Automation Officer",
+        "desc": "Lidera la infraestructura tecnológica, automatización y sistemas internos que impulsan decisiones basadas en datos.",
+        "focus": "Tecnología · Automatización · Data"
+      }
+    },
     "mission": "Nuestra Misión",
     "missionText": "Empoderar a los consumidores apasionados en las Américas ofreciendo productos curados e inspirados en la cultura geek mediante experiencias de e-commerce innovadoras, mientras ayudamos a las marcas a crecer en marketplaces con estrategias impulsadas por tecnología y excelencia en fulfillment.",
     "stats": {
@@ -45,9 +72,30 @@
     "description": "Nos asociamos con las marcas más innovadoras y emocionantes de la cultura geek. Desde videojuegos hasta coleccionables, nuestra selección curada te acerca los mejores productos de líderes de la industria y creadores emergentes."
   },
   "marketplaces": {
+    "title": "Dónde Vendemos",
+    "subtitle": "Operamos en las plataformas de e-commerce más grandes de las Américas, entregando productos a miles de clientes todos los días.",
     "ml_mx_desc": "Tenemos una presencia activa y en crecimiento en el **marketplace más grande de México**. Con una red logística sólida y estatus de vendedor autorizado, garantizamos **cumplimiento confiable y visibilidad** para cada producto. Nuestra estrategia se centra en localización, entregas rápidas y optimización de listings para compradores mexicanos.",
     "ml_ar_desc": "En Argentina, nos especializamos en **lanzar y escalar marcas** mediante contenido a medida, manejo eficiente de inventario y colocación promocional. Como vendedores oficiales, aportamos **experiencia local y conocimiento del mercado** en uno de los espacios digitales más competitivos de Sudamérica.",
     "amazon_desc": "Con más de **15 años de experiencia** en Amazon y más de **62.000 reseñas verificadas**, Geekshive es uno de los **vendedores más confiables** de la plataforma. Brindamos soporte para logística FBA y ayudamos a que los productos crezcan dentro de un sistema diseñado para **conversión, rendimiento y visibilidad de marca**."
+  },
+  "expanding": {
+    "badge": "En Expansión",
+    "title": "También en",
+    "subtitle": "Estamos ampliando nuestra presencia en toda Latinoamérica. Estos son los mercados donde también vendemos a través de Mercado Libre.",
+    "countries": {
+      "brasil": {
+        "name": "Brasil",
+        "desc": "Llegando a uno de los mercados de e-commerce más grandes del mundo. Llevamos cultura geek y productos curados a compradores brasileños a través de la plataforma de Mercado Libre."
+      },
+      "chile": {
+        "name": "Chile",
+        "desc": "Atendemos a consumidores chilenos con un catálogo creciente de productos premium. Nuestras operaciones aprovechan logística rápida y estrategias localizadas para conectar con este mercado dinámico."
+      },
+      "colombia": {
+        "name": "Colombia",
+        "desc": "Aprovechando el creciente comercio digital de Colombia. Ofrecemos precios competitivos y cumplimiento confiable a clientes en todo el país."
+      }
+    }
   },
   "boosting": {
     "questionTitle": "¿Tu marca está <span class=\"text-[#F2D300]\">estancada en ventas</span>?",

@@ -27,6 +27,33 @@
     "p2": "We specialize in marketplace strategy, product positioning, and fulfillment — always focused on making geek culture accessible and engaging for customers across the Americas.",
     "meetTeam": "Meet The Team",
     "teamSubtitle": "The passionate minds behind Geekshive",
+    "team": {
+      "francisco": {
+        "title": "Founder & CEO",
+        "desc": "Founder and CEO responsible for global strategy, growth, and operational performance across the US and LATAM.",
+        "focus": "Strategy · Performance · Growth"
+      },
+      "joaquin": {
+        "title": "Regional Director of Operations – LATAM South",
+        "desc": "Leads the commercial and operational strategy in Argentina, Colombia, and Chile, optimizing pricing, promotions, and profitability.",
+        "focus": "Marketplace Growth · Revenue"
+      },
+      "agustin": {
+        "title": "Regional Director of Operations – Mexico & Brasil",
+        "desc": "Responsible for growth, positioning, and profitability optimization in the Mexico and Brasil markets.",
+        "focus": "Expansion · Marketplace Strategy"
+      },
+      "matias": {
+        "title": "Director of Amazon & Brand Development",
+        "desc": "Leads the Amazon unit, strategic supplier development, and the creation and positioning of proprietary brands.",
+        "focus": "Sourcing · Brand Development"
+      },
+      "valentina": {
+        "title": "Chief Technology & Automation Officer",
+        "desc": "Leads technological infrastructure, automation, and internal systems that power data-driven decision making.",
+        "focus": "Technology · Automation · Data"
+      }
+    },
     "mission": "Our Mission",
     "missionText": "To empower passionate consumers across the Americas by delivering curated, geek-inspired products through innovative e-commerce experiences, while helping brands thrive on marketplaces through tech-driven strategies and fulfillment excellence.",
     "stats": {
@@ -45,9 +72,30 @@
     "description": "We partner with the most innovative and exciting brands in geek culture. From gaming to collectibles, our curated selection brings you the best products from industry leaders and emerging creators."
   },
   "marketplaces": {
+    "title": "Where We Sell",
+    "subtitle": "We operate across the largest e-commerce platforms in the Americas, delivering products to thousands of customers every day.",
     "ml_mx_desc": "We have an active and growing presence in **Mexico's largest online marketplace**. With a solid logistics network and authorized seller status, we ensure **reliable fulfillment and visibility** for every product. Our strategy focuses on localization, fast delivery, and listing optimization tailored to Mexican buyers.",
     "ml_ar_desc": "In Argentina, we specialize in **launching and scaling brands** through custom content, efficient inventory handling, and promotional placement. As official sellers, we bring **local experience and market insight** into one of South America's most competitive digital spaces.",
     "amazon_desc": "With over **15 years of experience** on Amazon and more than **62,000 verified reviews**, Geekshive is one of the most **trusted sellers** on the platform. We support both FBA logistics and help products grow by placing them into a system built for **conversion, performance, and brand visibility**."
+  },
+  "expanding": {
+    "badge": "Expanding",
+    "title": "Also on",
+    "subtitle": "We're growing our footprint across Latin America. These are the markets where we're also selling through Mercado Libre.",
+    "countries": {
+      "brasil": {
+        "name": "Brasil",
+        "desc": "Reaching one of the world's largest e-commerce markets. We bring geek culture and curated products to Brazilian buyers through Mercado Libre's robust platform."
+      },
+      "chile": {
+        "name": "Chile",
+        "desc": "Serving Chilean consumers with a growing catalog of premium products. Our operations leverage fast logistics and localized strategies to connect with this dynamic market."
+      },
+      "colombia": {
+        "name": "Colombia",
+        "desc": "Tapping into Colombia's fast-growing digital commerce landscape. We offer competitive pricing and reliable fulfillment to customers across the country."
+      }
+    }
   },
   "boosting": {
     "questionTitle": "Is Your Brand <span class=\"text-[#F2D300]\">Stuck in a Sales Plateau</span>?",

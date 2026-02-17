@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '../i18n/I18nProvider';
 import LanguageToggle from './LanguageToggle';
 
@@ -10,24 +11,44 @@ export default function Navbar() {
   const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
-  // Handle scroll effect
+  // Handle scroll effect + active section detection
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Detect active section
+      const sections = ['home', 'marketplaces', 'brands', 'about', 'boosting', 'contact'];
+      for (const id of sections.reverse()) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle smooth scrolling
-  const scrollToSection = (sectionId) => {
+  // Close mobile menu on resize
+  useEffect(() => {
+    const close = () => { if (window.innerWidth >= 768) setIsOpen(false); };
+    window.addEventListener('resize', close);
+    return () => window.removeEventListener('resize', close);
+  }, []);
+
+  const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId.toLowerCase());
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false); // Close mobile menu after clicking
+      setIsOpen(false);
     }
-  };
+  }, []);
 
   const navItems = [
     { label: t('nav.home'), id: 'home' },
@@ -39,70 +60,112 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={'w-full fixed top-0 left-0 z-50 transition-all duration-300 bg-black/80 backdrop-blur-md '}>
-      <div className="max-w-7xl mx-auto px-6 py-4">
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`w-full fixed top-0 left-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-black/70 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-[#F2D300]/10'
+          : 'bg-transparent backdrop-blur-sm border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <motion.div
+            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <button onClick={() => scrollToSection('home')} className="focus:outline-none">
               <Image
                 src="/GeekshiveAmarillo.png"
                 alt="Geekshive Logo"
-                width={30}
-                height={30}
-                className="object-contain hover:drop-shadow-[0_0_6px_#F2D300] transition"
+                width={32}
+                height={32}
+                className="object-contain transition-all duration-300 hover:drop-shadow-[0_0_8px_#F2D300]"
               />
             </button>
-          </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 text-[#F2D300] font-raleway font-semibold text-base">
+          <div className="hidden md:flex items-center space-x-1 text-sm font-raleway font-semibold">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative transition hover:drop-shadow-[0_0_6px_#F2D300] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#F2D300] after:transition-all hover:after:w-full focus:outline-none"
+                className={`relative px-4 py-2 rounded-full transition-all duration-300 focus:outline-none ${
+                  activeSection === item.id
+                    ? 'text-black bg-[#F2D300] shadow-[0_0_20px_rgba(242,211,0,0.3)]'
+                    : 'text-[#F2D300]/80 hover:text-[#F2D300] hover:bg-white/5'
+                }`}
               >
                 {item.label}
               </button>
             ))}
           </div>
 
-        {/* Right side: Language toggle (desktop) + Mobile Menu Button */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:block text-white/80">
-            <LanguageToggle />
+          {/* Right side */}
+          <div className="flex items-center gap-4">
+            <div className="hidden md:block text-white/80">
+              <LanguageToggle />
+            </div>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-[#F2D300] focus:outline-none p-2 rounded-lg hover:bg-white/5 transition-colors"
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <FaTimes size={22} />
+                  </motion.div>
+                ) : (
+                  <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                    <FaBars size={22} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
           </div>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-[#F2D300] focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-          </button>
-        </div>
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        } overflow-hidden`}>
-          <div className="flex flex-col space-y-4 py-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-[#F2D300] font-raleway font-semibold text-base transition hover:drop-shadow-[0_0_6px_#F2D300] focus:outline-none"
-              >
-                {item.label}
-              </button>
-            ))}
-            <div className="pt-2 text-white/80">
-              <LanguageToggle />
-            </div>
-          </div>
-        </div>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="flex flex-col space-y-1 py-4 border-t border-[#F2D300]/10 mt-3">
+                {navItems.map((item, i) => (
+                  <motion.button
+                    key={item.id}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`text-left px-4 py-3 rounded-xl font-raleway font-semibold text-base transition-all duration-200 focus:outline-none ${
+                      activeSection === item.id
+                        ? 'text-black bg-[#F2D300]'
+                        : 'text-[#F2D300]/80 hover:text-[#F2D300] hover:bg-white/5'
+                    }`}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+                <div className="pt-3 px-4 text-white/80">
+                  <LanguageToggle />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

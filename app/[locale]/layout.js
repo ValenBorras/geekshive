@@ -6,8 +6,9 @@ import es from "../i18n/dictionaries/es.json";
 
 const raleway = Raleway({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-raleway",
+  display: "swap",
 });
 
 export const metadata = {
@@ -20,8 +21,8 @@ export default function LocaleLayout({ children, params }) {
   const { locale } = params;
   const dictionary = locale === 'es' ? es : en;
   return (
-    <html lang={locale}>
-      <body className={`${raleway.variable} font-raleway antialiased`}>
+    <html lang={locale} className="scroll-smooth">
+      <body className={`${raleway.variable} font-raleway antialiased overflow-x-hidden`}>
         <I18nProvider dictionary={dictionary}>{children}</I18nProvider>
       </body>
     </html>
