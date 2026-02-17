@@ -166,8 +166,8 @@ export default function AboutUs() {
                   className="group relative bg-black/40 border border-[#F2D300]/20 rounded-2xl p-5 flex flex-col items-center text-center hover:border-[#F2D300]/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(242,211,0,0.08)]"
                   variants={fadeInUp}
                 >
-                  <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
-                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="128px" />
+                  <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
+                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="256px" quality={95} unoptimized />
                   </div>
                   <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
                   <p className="text-[#F2D300] font-semibold text-xs mb-3 leading-snug">{member.title}</p>
@@ -193,8 +193,8 @@ export default function AboutUs() {
                   className="group relative bg-black/40 border border-[#F2D300]/20 rounded-2xl p-5 flex flex-col items-center text-center hover:border-[#F2D300]/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(242,211,0,0.08)]"
                   variants={fadeInUp}
                 >
-                  <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
-                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="128px" />
+                  <div className="relative w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-[#F2D300]/30 group-hover:border-[#F2D300]/70 transition-all duration-500 mb-4 shadow-lg">
+                    <Image src={member.image} alt={member.name} fill className="object-cover object-top" sizes="256px" quality={95} unoptimized />
                   </div>
                   <h4 className="text-lg font-bold text-white mb-1">{member.name}</h4>
                   <p className="text-[#F2D300] font-semibold text-xs mb-3 leading-snug">{member.title}</p>
