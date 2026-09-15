@@ -29,6 +29,13 @@ const stats = (t) => ([
 
 const teamMembers = (t) => ([
   {
+    name: 'Vilma Schmidt',
+    title: t('about.team.vilma.title'),
+    description: t('about.team.vilma.desc'),
+    image: '/Team/Vilma_Biky_mami.png',
+    focus: t('about.team.vilma.focus'),
+  },
+  {
     name: 'Francisco Borras',
     title: t('about.team.francisco.title'),
     description: t('about.team.francisco.desc'),
@@ -179,9 +186,9 @@ export default function AboutUs() {
               ))}
             </motion.div>
 
-            {/* Second row - 2 members centered */}
+            {/* Second row - 3 members */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl lg:max-w-[66%]"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
               initial="initial"
               whileInView="animate"
               viewport={{ once: true }}
