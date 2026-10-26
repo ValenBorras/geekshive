@@ -12,9 +12,9 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "Geekshive - Your online geek store",
+  title: "GeeksHive - Robotics components & Livox specialists in Latin America",
   description:
-    "Geekshive is your premier destination for all things geek culture, featuring a curated selection of collectibles, games, and merchandise.",
+    "GeeksHive supplies robotics components across Latin America: Livox LiDAR, Unitree robotic platforms and NVIDIA Jetson embedded AI computing, plus gaming consoles and accessories.",
 };
 
 export default function LocaleLayout({ children, params }) {

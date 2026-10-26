@@ -32,6 +32,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {[
                 { href: '#about', label: t('footer.menu.aboutUs') },
+                { href: '#robotics', label: t('footer.menu.robotics') },
                 { href: '#marketplaces', label: t('footer.menu.marketplaces') },
                 { href: '#brands', label: t('footer.menu.brands') },
                 { href: '#boosting', label: t('footer.menu.boosting') },

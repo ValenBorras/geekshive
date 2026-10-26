@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import { useI18n } from '../i18n/I18nProvider';
 
@@ -10,11 +10,26 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
+// Scrolls to the contact form and pre-fills the subject (e.g. for Livox B2B leads).
+export function goToContact(subject) {
+  window.dispatchEvent(new CustomEvent('contact:prefill', { detail: { subject } }));
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+}
+
 export default function Contact() {
   const { t } = useI18n();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [focusedField, setFocusedField] = useState(null);
+  const subjectRef = useRef(null);
+
+  useEffect(() => {
+    const handlePrefill = (e) => {
+      if (subjectRef.current && e.detail?.subject) subjectRef.current.value = e.detail.subject;
+    };
+    window.addEventListener('contact:prefill', handlePrefill);
+    return () => window.removeEventListener('contact:prefill', handlePrefill);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -112,6 +127,7 @@ export default function Contact() {
                 <input
                   type="text"
                   name="subject"
+                  ref={subjectRef}
                   required
                   className={inputClasses}
                   placeholder={t('contact.subject')}

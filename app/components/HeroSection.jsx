@@ -5,18 +5,20 @@ import { motion, useMotionValue, useSpring } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { useI18n } from "../i18n/I18nProvider"
 
+// Logos are wordmarks, so they sit contained on a tile; `dark` uses a dark tile for white logos.
 const brandsOuter = [
-  { src: "/Brands/witmer.jpg", alt: "Brand 1" },
-  { src: "/Brands/alliance logo copy.jpg", alt: "Brand 2" },
-  { src: "/Brands/doss2.jpeg", alt: "Brand 3" },
-  { src: "/Brands/gamelyn.jpg", alt: "Brand 4" },
-  { src: "/Brands/GW.jpg", alt: "Brand 5" },
+  { src: "/Brands/gaming/playstation.svg", alt: "PlayStation" },
+  { src: "/Brands/gaming/xbox.svg", alt: "Xbox" },
+  { src: "/Brands/gaming/nintendo.svg", alt: "Nintendo" },
+  { src: "/Brands/gaming/razer.svg", alt: "Razer", dark: true },
+  { src: "/Brands/gaming/hyperx.png", alt: "HyperX" },
+  { src: "/Brands/gaming/logitech-g.png", alt: "Logitech G" },
 ]
 
 const brandsInner = [
-  { src: "/Brands/Douglas company.jpg", alt: "Brand 6" },
-  { src: "/Brands/adbisA.png", alt: "Brand 7" },
-  { src: "/Brands/B&F.jpg", alt: "Brand 8" },
+  { src: "/Brands/robotics/livox.svg", alt: "Livox", dark: true },
+  { src: "/Brands/robotics/unitree.svg", alt: "Unitree" },
+  { src: "/Brands/robotics/nvidia-white.svg", alt: "NVIDIA Jetson", dark: true },
 ]
 
 const containerVariants = {
@@ -75,8 +77,8 @@ export default function HeroSection() {
 
   const outerRadius = isMobile ? 120 : 250
   const innerRadius = isMobile ? 70 : 150
-  const outerLogoSize = isMobile ? 32 : 52
-  const innerLogoSize = isMobile ? 26 : 42
+  const outerLogoSize = isMobile ? 50 : 84
+  const innerLogoSize = isMobile ? 42 : 70
 
   return (
     <div
@@ -226,21 +228,19 @@ export default function HeroSection() {
                           marginLeft: `-${outerLogoSize / 2}px`,
                           marginTop: `-${outerLogoSize / 2}px`,
                         }}
-                        animate={{ rotate: -360 }}
+                        // Counter-rotate against the orbit so logos stay upright
+                        initial={{ opacity: 0, scale: 0, rotate: 0 }}
+                        animate={{ opacity: 1, scale: 1, rotate: -360 }}
                         transition={{
-                          duration: 80,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "linear",
+                          rotate: { duration: 80, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                          default: { duration: 0.4, delay: 0.3 + index * 0.06, ease: [0.22, 1, 0.36, 1] },
                         }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div
                           className={`w-full h-full rounded-full shadow-lg ring-1 ring-white/10 ${
                             imageErrors[id]
                               ? "bg-[#F2D300] flex items-center justify-center text-xs font-bold text-black"
-                              : "bg-gray-200"
+                              : brand.dark ? "bg-black" : "bg-white"
                           }`}
                         >
                           {imageErrors[id] ? brand.alt.charAt(0) : null}
@@ -251,7 +251,7 @@ export default function HeroSection() {
                             alt={brand.alt}
                             width={outerLogoSize}
                             height={outerLogoSize}
-                            className="rounded-full object-cover absolute inset-0 ring-1 ring-white/10"
+                            className="object-contain absolute inset-0 w-full h-full p-[13%]"
                             onError={() => handleImageError(id)}
                             unoptimized={true}
                           />
@@ -287,21 +287,19 @@ export default function HeroSection() {
                           marginLeft: `-${innerLogoSize / 2}px`,
                           marginTop: `-${innerLogoSize / 2}px`,
                         }}
-                        animate={{ rotate: 360 }}
+                        // Counter-rotate against the orbit so logos stay upright
+                        initial={{ opacity: 0, scale: 0, rotate: 0 }}
+                        animate={{ opacity: 1, scale: 1, rotate: 360 }}
                         transition={{
-                          duration: 60,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "linear",
+                          rotate: { duration: 60, repeat: Number.POSITIVE_INFINITY, ease: "linear" },
+                          default: { duration: 0.4, delay: 0.5 + index * 0.06, ease: [0.22, 1, 0.36, 1] },
                         }}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: 0.5 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <div
                           className={`w-full h-full rounded-full shadow-lg ring-1 ring-white/10 ${
                             imageErrors[id]
                               ? "bg-[#F2D300] flex items-center justify-center text-xs font-bold text-black"
-                              : "bg-gray-200"
+                              : brand.dark ? "bg-black" : "bg-white"
                           }`}
                         >
                           {imageErrors[id] ? brand.alt.charAt(0) : null}
@@ -312,7 +310,7 @@ export default function HeroSection() {
                             alt={brand.alt}
                             width={innerLogoSize}
                             height={innerLogoSize}
-                            className="rounded-full object-cover absolute inset-0 ring-1 ring-white/10"
+                            className="object-contain absolute inset-0 w-full h-full p-[13%]"
                             onError={() => handleImageError(id)}
                             unoptimized={true}
                           />

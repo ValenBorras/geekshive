@@ -1,0 +1,5 @@
+[
+  { "id": "livox", "name": "Livox", "logo": "/Brands/robotics/livox.svg", "featured": true, "link": "https://www.livoxtech.com" },
+  { "id": "unitree", "name": "Unitree", "logo": "/Brands/robotics/unitree.svg", "invertLogo": true, "link": "https://www.unitree.com" },
+  { "id": "jetson", "name": "NVIDIA Jetson", "logo": "/Brands/robotics/nvidia-white.svg", "link": "https://developer.nvidia.com/embedded/jetson-modules" }
+]

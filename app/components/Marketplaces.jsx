@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaAmazon } from 'react-icons/fa';
+import { FaAmazon, FaEnvelope } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import React from 'react'
 import { useI18n } from '../i18n/I18nProvider';
@@ -184,6 +184,26 @@ export default function Marketplaces() {
           </motion.div>
         ))}
       </div>
+
+      {/* Bulk / wholesale inquiries */}
+      <motion.div
+        className="flex justify-center mt-12 relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 py-4 rounded-2xl glass-card">
+          <span className="text-white/80 font-semibold text-sm md:text-base">{t('marketplaces.bulkText')}</span>
+          <a
+            href="mailto:fran@geekshive.com"
+            className="group inline-flex items-center gap-2 bg-[#F2D300] text-black font-bold px-6 py-2.5 rounded-full text-sm hover:bg-[#ffe44d] shadow-[0_0_25px_rgba(242,211,0,0.2)] hover:shadow-[0_0_40px_rgba(242,211,0,0.35)] hover:scale-105"
+          >
+            <FaEnvelope className="text-sm" />
+            {t('marketplaces.bulkCta')}
+          </a>
+        </div>
+      </motion.div>
 
       {/* Expanding Markets Sub-section */}
       <div className="max-w-7xl mx-auto relative z-10 mt-20">

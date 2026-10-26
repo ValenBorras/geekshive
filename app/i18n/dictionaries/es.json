@@ -1,7 +1,7 @@
 {
   "common": {
     "brand": "GEEKSHIVE",
-    "tagline": "Tu tienda geek online.",
+    "tagline": "Componentes de robótica y gaming para Latinoamérica.",
     "menu": "Menú",
     "followUs": "Síguenos",
     "contact": "Contacto",
@@ -11,6 +11,7 @@
   },
   "nav": {
     "home": "Inicio",
+    "robotics": "Robótica",
     "marketplaces": "Marketplaces",
     "brands": "Marcas",
     "about": "Nosotros",
@@ -20,6 +21,46 @@
   "hero": {
     "title": "GeeksHive: Tu tienda geek online.",
     "brands": "marcas"
+  },
+  "robotics": {
+    "badge": "Robótica",
+    "title": "Componentes de Robótica",
+    "description": "Ayudamos a empresas, integradores y equipos de investigación de toda Latinoamérica a conseguir el hardware de sus robots: sensores LiDAR, plataformas robóticas y cómputo embebido para IA.",
+    "specialty": "Nuestra especialidad",
+    "learnMore": "Sitio de la marca",
+    "cta": "Habla con nuestros especialistas en Livox",
+    "contactSubject": "Consulta Livox",
+    "ctaNote": "Precios por volumen, cotizaciones por proyecto y asesoramiento técnico para empresas.",
+    "items": {
+      "livox": {
+        "tagline": "Sensores LiDAR",
+        "desc": "Livox es nuestro foco principal. Te ayudamos a elegir el LiDAR adecuado para mapeo, navegación autónoma, robótica y automatización industrial, y te acompañamos desde la primera cotización hasta la puesta en marcha.",
+        "products": [
+          "Mid-360",
+          "HAP",
+          "Avia",
+          "Mid-70",
+          "Soporte de integración"
+        ]
+      },
+      "unitree": {
+        "tagline": "Plataformas robóticas",
+        "desc": "Robots cuadrúpedos y humanoides para investigación, educación, inspección y proyectos de desarrollo.",
+        "products": [
+          "Cuadrúpedos",
+          "Humanoides",
+          "Accesorios"
+        ]
+      },
+      "jetson": {
+        "tagline": "Cómputo embebido para IA",
+        "desc": "Módulos y kits de desarrollo Jetson para correr percepción e IA en el borde, a bordo de tu robot.",
+        "products": [
+          "Módulos",
+          "Kits de desarrollo"
+        ]
+      }
+    }
   },
   "about": {
     "title": "Sobre Nosotros",
@@ -73,12 +114,14 @@
     }
   },
   "brands": {
-    "title": "Nuestras Marcas",
-    "description": "Nos asociamos con las marcas más innovadoras y emocionantes de la cultura geek. Desde videojuegos hasta coleccionables, nuestra selección curada te acerca los mejores productos de líderes de la industria y creadores emergentes."
+    "title": "Marcas que Trabajamos",
+    "description": "Desde LiDAR Livox, robots Unitree y cómputo NVIDIA Jetson hasta consolas, controles, auriculares y accesorios gamer: estas son las marcas que abastecemos y vendemos en toda América."
   },
   "marketplaces": {
     "title": "Dónde Vendemos",
     "subtitle": "Operamos en las plataformas de e-commerce más grandes de las Américas, entregando productos a miles de clientes todos los días.",
+    "bulkText": "¿Te interesa comprar por mayor?",
+    "bulkCta": "Envíanos un email",
     "ml_mx_desc": "Tenemos una presencia activa y en crecimiento en el **marketplace más grande de México**. Con una red logística sólida y estatus de vendedor autorizado, garantizamos **cumplimiento confiable y visibilidad** para cada producto. Nuestra estrategia se centra en localización, entregas rápidas y optimización de listings para compradores mexicanos.",
     "ml_ar_desc": "En Argentina, nos especializamos en **lanzar y escalar marcas** mediante contenido a medida, manejo eficiente de inventario y colocación promocional. Como vendedores oficiales, aportamos **experiencia local y conocimiento del mercado** en uno de los espacios digitales más competitivos de Sudamérica.",
     "amazon_desc": "Con más de **15 años de experiencia** en Amazon y más de **62.000 reseñas verificadas**, Geekshive es uno de los **vendedores más confiables** de la plataforma. Brindamos soporte para logística FBA y ayudamos a que los productos crezcan dentro de un sistema diseñado para **conversión, rendimiento y visibilidad de marca**."
@@ -175,7 +218,7 @@
   },
   "contact": {
     "title": "Contáctanos",
-    "desc": "¿Tienes preguntas sobre nuestros productos o servicios? Nos encantaría escucharte. Completa el formulario y te responderemos a la brevedad.",
+    "desc": "¿Buscas componentes de robótica, una cotización de Livox o productos de gaming? Completa el formulario y nuestro equipo te responderá a la brevedad.",
     "yourName": "Tu Nombre",
     "yourEmail": "Tu Email",
     "subject": "Asunto",
@@ -188,6 +231,7 @@
   "footer": {
     "menu": {
       "aboutUs": "Nosotros",
+      "robotics": "Robótica",
       "marketplaces": "Marketplaces",
       "brands": "Marcas",
       "boosting": "Impulso",
@@ -199,13 +243,5 @@
       "phone": "Teléfono",
       "city": "Miami, Florida, USA"
     }
-  },
-  "doss": {
-    "new": "¡NOVEDAD!",
-    "headline": "Geekshive trajo la marca <span class=\"text-yellow-400 font-extrabold\">DOSS</span> a <span class=\"text-slate-200 font-bold\"><span class=\"underline decoration-yellow-400 decoration-2 underline-offset-2\">Argentina</span> y <span class=\"underline decoration-yellow-400 decoration-2 underline-offset-2\">México</span></span>",
-    "features": "Parlantes premium • Sonido superior • Bluetooth 5.3 • Precios accesibles • Resistentes al agua",
-    "cta": "Descubrí DOSS en www.dosslatam.com"
   }
 }
-
-

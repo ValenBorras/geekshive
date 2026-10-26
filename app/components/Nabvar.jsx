@@ -19,7 +19,7 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 20);
 
       // Detect active section
-      const sections = ['home', 'marketplaces', 'brands', 'about', 'boosting', 'contact'];
+      const sections = ['home', 'robotics', 'marketplaces', 'brands', 'about', 'boosting', 'contact'];
       for (const id of sections.reverse()) {
         const el = document.getElementById(id);
         if (el) {
@@ -52,6 +52,7 @@ export default function Navbar() {
 
   const navItems = [
     { label: t('nav.home'), id: 'home' },
+    { label: t('nav.robotics'), id: 'robotics' },
     { label: t('nav.marketplaces'), id: 'marketplaces' },
     { label: t('nav.brands'), id: 'brands' },
     { label: t('nav.about'), id: 'about' },

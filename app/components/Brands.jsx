@@ -29,13 +29,14 @@ const Brands = () => {
         onDragStart={handleDragStart}
         className="flex items-center justify-center h-full group"
       >
-        <div className="flex items-center justify-center h-full">
+        <div className={`flex items-center justify-center w-32 sm:w-40 md:w-48 h-24 px-5 rounded-2xl ${brand.dark ? 'bg-black border border-white/15' : 'bg-white'} transition-all duration-500 opacity-90 group-hover:opacity-100 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(242,211,0,0.2)]`}>
           <Image
             src={brand.url}
             alt={brand.name}
-            width={100}
-            height={50}
-            className="w-32 sm:w-40 md:w-48 transition-all duration-500 object-contain max-h-[80%] opacity-70 group-hover:opacity-100 group-hover:scale-110 group-hover:drop-shadow-[0_0_12px_rgba(242,211,0,0.15)]"
+            width={160}
+            height={64}
+            unoptimized
+            className="w-full h-full object-contain max-h-14"
           />
         </div>
       </a>
