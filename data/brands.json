@@ -8,5 +8,9 @@
   { "name": "Logitech G", "url": "/Brands/gaming/logitech-g.png", "link": "https://www.logitechg.com" },
   { "name": "Razer", "url": "/Brands/gaming/razer.svg", "dark": true, "link": "https://www.razer.com" },
   { "name": "HyperX", "url": "/Brands/gaming/hyperx.png", "link": "https://www.hyperx.com" },
-  { "name": "8BitDo", "url": "/Brands/gaming/8bitdo.svg", "link": "https://www.8bitdo.com" }
+  { "name": "8BitDo", "url": "/Brands/gaming/8bitdo.svg", "link": "https://www.8bitdo.com" },
+  { "name": "LEGO", "url": "/Brands/toys/lego.svg", "link": "https://www.lego.com" },
+  { "name": "Mattel", "url": "/Brands/toys/mattel.svg", "link": "https://www.mattel.com" },
+  { "name": "Hasbro", "url": "/Brands/toys/hasbro.svg", "link": "https://www.hasbro.com" },
+  { "name": "Funko", "url": "/Brands/toys/funko.svg", "link": "https://funko.com" }
 ]
